@@ -64,7 +64,7 @@ export const SidebarFooter = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "flex flex-col gap-4 px-4 py-6 mt-auto border-t border-[var(--color-border-light)]",
+        "flex flex-col gap-4 px-4 py-6 mt-auto border-t border-[var(--color-border-light)] select-none",
         className,
       )}
       {...props}
@@ -77,6 +77,7 @@ export const SidebarFooter = React.forwardRef<
           onClick={() =>
             window.open("https://github.com/yours-truly68", "_blank")
           }
+          className="transition-transform duration-200 hover:scale-110 active:scale-95"
         >
           <GithubIcon />
         </IconButton>
@@ -90,6 +91,7 @@ export const SidebarFooter = React.forwardRef<
               "_blank",
             )
           }
+          className="transition-transform duration-200 hover:scale-110 active:scale-95"
         >
           <LinkedinIcon />
         </IconButton>
@@ -100,6 +102,7 @@ export const SidebarFooter = React.forwardRef<
           onClick={() =>
             (window.location.href = "mailto:mohammedrazim880@gmail.com")
           }
+          className="transition-transform duration-200 hover:scale-110 active:scale-95"
         >
           <Mail className="w-4 h-4" />
         </IconButton>
@@ -108,6 +111,7 @@ export const SidebarFooter = React.forwardRef<
             variant="ghost"
             size="sm"
             aria-label="View Professional Profile & Resume"
+            className="transition-transform duration-200 hover:scale-110 active:scale-95"
           >
             <FileText className="w-4 h-4" />
           </IconButton>
@@ -118,18 +122,18 @@ export const SidebarFooter = React.forwardRef<
         <button
           onClick={toggleTheme}
           aria-label="Toggle Theme"
-          className="inline-flex items-center gap-1.5 p-1.5 rounded-full bg-[var(--color-bg-card-subtle)] border border-[var(--color-border-light)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]"
+          className="group inline-flex items-center gap-1.5 p-1.5 rounded-full bg-[var(--color-bg-card-subtle)] border border-[var(--color-border-light)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-all duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]"
         >
           <Sun
             className={cn(
-              "w-3.5 h-3.5",
-              theme === "light" && "text-[var(--color-brand-primary)]",
+              "w-3.5 h-3.5 transition-all duration-300 group-hover:rotate-45",
+              theme === "light" ? "text-[var(--color-brand-primary)] scale-110" : "opacity-40"
             )}
           />
           <Moon
             className={cn(
-              "w-3.5 h-3.5",
-              theme === "dark" && "text-[var(--color-brand-primary)]",
+              "w-3.5 h-3.5 transition-all duration-300 group-hover:-rotate-12",
+              theme === "dark" ? "text-[var(--color-brand-primary)] scale-110" : "opacity-40"
             )}
           />
         </button>
