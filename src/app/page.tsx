@@ -9,7 +9,7 @@ import { Section } from "@/components/ui";
 
 export default function Home() {
   return (
-    <MainLayout activeSection="home">
+    <MainLayout>
       {/* 01 Home / Hero Section */}
       <Section id="home" spacing="none">
         <Hero />
