@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@import "./tokens/colors.css";
+@import "./tokens/spacing.css";
+@import "./tokens/typography.css";
+@import "./tokens/radius.css";
+@import "./tokens/shadows.css";
+@import "./tokens/animations.css";
+@import "./layout.css";
+
+/* ==========================================================================
+   BASE RESETS & REUSABLE UTILITY CLASSES
+   Visual Source of Truth: REFERENCE.md / image.png
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--font-body-md);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-tight);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Text Selection */
+::selection {
+  background-color: rgba(123, 97, 255, 0.2);
+  color: var(--color-brand-primary);
+}
+
+/* ------------------------------------------------------------------------
+   REQUIRED UTILITY CLASSES
+   ------------------------------------------------------------------------ */
+
+/* Container & Layout Utilities */
+.editorial-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.content-width {
+  width: 100%;
+  max-width: 960px;
+}
+
+.section-padding {
+  padding-top: var(--space-section-gap);
+  padding-bottom: var(--space-section-gap);
+}
+
+.section-gap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section-gap);
+}
+
+.card-padding {
+  padding: var(--space-card-padding-md);
+}
+
+/* Surface & Glass Utilities */
+.glass {
+  background: var(--color-bg-sidebar);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--color-border-light);
+}
+
+.surface {
+  background: var(--surface-card);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-card);
+}
+
+.surface:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-border-medium);
+}
+
+.surface-dark {
+  background: var(--surface-dark);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border-dark);
+  box-shadow: var(--shadow-card);
+}
+
+/* Brand & Typography Utilities */
+.font-serif-italic,
+.italic-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-brand-italic);
+}
+
+.gradient-brand {
+  background: var(--color-brand-gradient);
+}
+
+.gradient-text {
+  background: var(--color-brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Special Effects Utilities */
+.noise {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.mask-fade {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Badges & Tech Pills */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption);
+  font-weight: 500;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-secondary);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-status-active);
+  box-shadow: 0 0 8px var(--color-status-active);
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-caption);
+  font-weight: 500;
+  background: rgba(244, 244, 242, 0.9);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-light);
+}

@@ -1,0 +1,29 @@
+/* ==========================================================================
+   LAYOUT, GRID, Z-INDEX & CONTAINER TOKENS
+   ========================================================================== */
+
+:root {
+  /* Slim Desktop Sidebar Width */
+  --sidebar-width: 170px;
+
+  /* Container & Grid Tokens */
+  --container-max: 1360px;
+  --grid-max-width: 1360px;
+  --grid-columns: 12;
+  --grid-gap: 24px;
+
+  /* Z-Index System */
+  --z-sidebar: 40;
+  --z-header: 30;
+  --z-dropdown: 50;
+  --z-overlay: 55;
+  --z-modal: 60;
+  --z-tooltip: 70;
+
+  /* Responsive Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
