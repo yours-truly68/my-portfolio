@@ -22,7 +22,7 @@ export const HeroActions = React.forwardRef<HTMLDivElement, HeroActionsProps>(
         <Button
           variant="primary"
           size="lg"
-          className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 shadow-sm"
+          className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
           onClick={
             onExploreClick ||
             (() => {
@@ -33,28 +33,28 @@ export const HeroActions = React.forwardRef<HTMLDivElement, HeroActionsProps>(
           }
         >
           EXPLORE MY WORK
-          <ArrowUpRight className="w-3.5 h-3.5" />
+          <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Button>
 
         {onResumeClick ? (
           <Button
             variant="secondary"
             size="lg"
-            className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)]"
+            className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)] transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
             onClick={onResumeClick}
           >
             VIEW RESUME
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5" />
           </Button>
         ) : (
           <Link href="/resume">
             <Button
               variant="secondary"
               size="lg"
-              className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)]"
+              className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)] transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               VIEW RESUME
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5" />
             </Button>
           </Link>
         )}

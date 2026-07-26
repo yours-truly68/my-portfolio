@@ -19,19 +19,19 @@ export const AvailabilityCard = React.forwardRef<
       variant="glass"
       padding="sm"
       className={cn(
-        "bg-white/72 dark:bg-slate-900/72 backdrop-blur-[24px] border border-black/5 dark:border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] p-4 sm:p-5 flex flex-col gap-2.5 rounded-[20px] transition-all",
+        "bg-white/95 dark:bg-slate-100/95 backdrop-blur-md border border-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.06)] p-4 sm:p-5 flex flex-col gap-2.5 rounded-[20px] transition-all",
         className
       )}
       {...props}
     >
       <div className="flex items-center gap-2">
         <span className="h-2 w-2 rounded-full bg-[var(--color-status-active)] animate-pulse" />
-        <span className="text-[0.675rem] font-semibold text-[#555555] tracking-tight">
+        <span className="text-[0.675rem] font-semibold text-slate-600 tracking-tight">
           {personalInfo.availabilityStatus}
         </span>
       </div>
       <div className="flex items-center justify-between gap-3 pt-1">
-        <p className="text-medium font-bold text-[#101010] leading-tight">
+        <p className="text-medium font-bold text-slate-900 leading-tight">
           Let&apos;s build something <br />
           <span className="font-serif-italic text-[var(--color-brand-primary)] font-normal">
             extraordinary.
@@ -41,7 +41,7 @@ export const AvailabilityCard = React.forwardRef<
           variant="brand"
           size="sm"
           aria-label="Contact Mohammad Razim"
-          className="w-8 h-8 rounded-full bg-[#EAE5FF] text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)] hover:text-white shrink-0 shadow-none transition-colors"
+          className="w-8 h-8 rounded-full bg-[#EAE5FF] text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)] hover:text-white shrink-0 shadow-sm transition-colors"
           onClick={() => {
             document
               .getElementById("contact")

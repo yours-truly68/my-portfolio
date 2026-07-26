@@ -1,36 +1,35 @@
 /* ==========================================================================
-   COLOR TOKENS — FINAL EDITORIAL POLISH
+   COLOR TOKENS
    Visual Source of Truth: REFERENCE.md / image.png
    ========================================================================== */
 
 :root {
-  /* Warm Editorial Uncoated Paper Canvas & Card Palette */
-  --color-bg-canvas: #F8F7F4;
-  --color-bg-canvas-alt: #FCFBF9;
-  --color-bg-card: #FCFBFA;
-  --color-bg-card-subtle: #F3F2EF;
-  --color-bg-card-dark: #0E0E10;
-  --color-bg-card-dark-alt: #151519;
-  --color-bg-sidebar: rgba(248, 247, 244, 0.85);
+  /* Warm Canvas & Card Palette */
+  --color-bg-canvas: #f8f8f6;
+  --color-bg-canvas-alt: #f9f8f7;
+  --color-bg-card: #fcfcfc;
+  --color-bg-card-subtle: #f4f4f2;
+  --color-bg-card-dark: #0a0b10;
+  --color-bg-card-dark-alt: #10121a;
+  --color-bg-sidebar: rgba(250, 249, 247, 0.85);
 
-  /* Precise Text Hierarchy */
-  --color-text-primary: #101010;
+  /* Deep High-Contrast Text Hierarchy */
+  --color-text-primary: #121212;
   --color-text-secondary: #555555;
-  --color-text-muted: #7E7E7E;
-  --color-text-inverse: #FCFBFA;
+  --color-text-muted: #888888;
+  --color-text-inverse: #fcfcfc;
 
-  /* Editorial Lavender-Purple Palette */
-  --color-brand-primary: #7D63F2;
-  --color-brand-secondary: #7157EA;
-  --color-brand-accent: #A997FF;
-  --color-brand-lavender: #7D63F2;
-  --color-brand-italic: #7D63F2;
-  --color-brand-glow: rgba(125, 99, 242, 0.12);
+  /* Refined Lavender-Purple Brand Palette */
+  --color-brand-primary: #7b61ff;
+  --color-brand-secondary: #6c52ed;
+  --color-brand-accent: #5e43e2;
+  --color-brand-lavender: #7a6af5;
+  --color-brand-italic: #7b61ff;
   --color-brand-gradient: linear-gradient(
     135deg,
-    #7D63F2 0%,
-    #A997FF 50%,
-    #7157EA 100%
+    #7b61ff 0%,
+    #a855f7 50%,
+    #4f46e5 100%
   );
 
   /* Status Colors */
@@ -38,18 +37,17 @@
   --color-status-active-bg: rgba(16, 185, 129, 0.1);
   --color-status-progress: #f59e0b;
 
-  /* Borders & Dividers */
-  --color-border-light: rgba(16, 16, 16, 0.05);
-  --color-border-medium: rgba(16, 16, 16, 0.08);
+  /* Borders */
+  --color-border-light: rgba(0, 0, 0, 0.06);
+  --color-border-medium: rgba(0, 0, 0, 0.12);
   --color-border-dark: rgba(255, 255, 255, 0.08);
-  --color-divider: #ECE9E6;
 
   /* Elevation Surfaces */
   --surface-base: var(--color-bg-canvas);
   --surface-card: var(--color-bg-card);
   --surface-raised: #ffffff;
-  --surface-floating: rgba(255, 255, 255, 0.72);
-  --surface-overlay: rgba(16, 16, 16, 0.6);
+  --surface-floating: rgba(252, 252, 252, 0.95);
+  --surface-overlay: rgba(18, 18, 18, 0.6);
   --surface-dark: var(--color-bg-card-dark);
 }
 
@@ -64,7 +62,7 @@
   --color-text-primary: #fcfcfc;
   --color-text-secondary: #a0a0a0;
   --color-text-muted: #666666;
-  --color-text-inverse: #101010;
+  --color-text-inverse: #121212;
 
   --color-border-light: rgba(255, 255, 255, 0.08);
   --color-border-medium: rgba(255, 255, 255, 0.16);
