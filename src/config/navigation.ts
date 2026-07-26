@@ -9,7 +9,7 @@ export interface NavItem {
 export const siteNavigation: NavItem[] = [
   { id: "home", number: "01", label: "Home", href: "/", type: "anchor" },
   { id: "projects", number: "02", label: "Projects", href: "/#projects", type: "anchor" },
-  { id: "journal", number: "03", label: "Journal", href: "/#journal", type: "anchor" },
+  { id: "journal", number: "03", label: "Journal", href: "/journal", type: "page" },
   { id: "experience", number: "04", label: "Experience", href: "/experience", type: "page" },
   { id: "principles", number: "05", label: "Principles", href: "/#principles", type: "anchor" },
   { id: "contact", number: "06", label: "Contact", href: "/#contact", type: "anchor" },

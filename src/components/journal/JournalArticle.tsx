@@ -3,17 +3,31 @@
 import * as React from "react";
 import { ArrowRight } from "lucide-react";
 import { JournalArticleItem } from "@/data/portfolioData";
+import { JournalEntry } from "@/types/journal";
 import { cn } from "@/lib/utils";
 
 export interface JournalArticleProps extends React.HTMLAttributes<HTMLDivElement> {
-  article: JournalArticleItem;
+  article: JournalArticleItem | JournalEntry;
 }
 
 export const JournalArticle = React.forwardRef<HTMLDivElement, JournalArticleProps>(
   ({ className, article, ...props }, ref) => {
+    const title = article.title;
+    const date = "published" in article ? article.published : article.date;
+    const readTime = article.readTime;
+    const isDraft = "isDraft" in article ? article.isDraft : false;
+    const targetUrl = "url" in article && article.url ? article.url : "/journal";
+
     return (
       <div
         ref={ref}
+        onClick={() => {
+          if ("url" in article && article.url) {
+            window.open(article.url, "_blank");
+          } else {
+            window.location.href = "/journal";
+          }
+        }}
         className={cn(
           "group flex items-center justify-between gap-4 py-6 sm:py-7 border-b border-black/[0.04] dark:border-white/[0.04] transition-all duration-200 hover:bg-black/[0.01] dark:hover:bg-white/[0.01] px-2 rounded-xl select-none cursor-pointer",
           className
@@ -23,13 +37,13 @@ export const JournalArticle = React.forwardRef<HTMLDivElement, JournalArticlePro
         {/* Title First, Metadata Second */}
         <div className="flex flex-col gap-1.5 max-w-md transition-transform duration-200 ease-out group-hover:translate-x-1">
           <h4 className="text-base sm:text-[1.05rem] font-bold tracking-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-brand-primary)] transition-colors leading-snug">
-            {article.title}
+            {title}
           </h4>
           <div className="flex items-center gap-2 text-[0.65rem] font-bold tracking-widest text-[var(--color-text-muted)] opacity-70 group-hover:opacity-100 uppercase transition-opacity">
-            <span>{article.date}</span>
+            <span>{date}</span>
             <span>•</span>
-            <span>{article.readTime}</span>
-            {article.isDraft && (
+            <span>{readTime}</span>
+            {isDraft && (
               <span className="ml-1 px-1.5 py-0.2 rounded bg-amber-100/70 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 font-semibold text-[0.6rem]">
                 DRAFT
               </span>
