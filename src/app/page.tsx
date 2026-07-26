@@ -1,7 +1,11 @@
 import { MainLayout } from "@/components/layout";
 import { Hero } from "@/components/hero";
 import { ProjectsSection } from "@/components/projects";
-import { Section, Card, SectionHeader, Text } from "@/components/ui";
+import { JournalSection } from "@/components/journal";
+import { ExperienceSection } from "@/components/experience";
+import { PrinciplesSection } from "@/components/principles";
+import { ContactSection } from "@/components/contact";
+import { Section } from "@/components/ui";
 
 export default function Home() {
   return (
@@ -14,57 +18,26 @@ export default function Home() {
       {/* 02 Featured Projects Section */}
       <ProjectsSection />
 
-      {/* 03 Journal Placeholder */}
-      <Section id="journal" spacing="md">
-        <SectionHeader
-          eyebrow="Journal"
-          title="Ideas, notes and thoughts."
-        />
-        <Card variant="default" className="min-h-[220px] flex items-center justify-center border-dashed">
-          <Text variant="muted" className="text-sm font-medium tracking-wider uppercase">
-            &lt;Journal Placeholder&gt;
-          </Text>
-        </Card>
-      </Section>
+      {/* 03 Journal & 04 Experience Two-Column Editorial Section */}
+      <Section id="journal" spacing="lg" className="scroll-mt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Journal Column - ~45% Width (5 of 12 columns) */}
+          <div className="lg:col-span-5">
+            <JournalSection />
+          </div>
 
-      {/* 04 Experience Placeholder */}
-      <Section id="experience" spacing="md">
-        <SectionHeader
-          eyebrow="Experience"
-          title="My journey so far."
-        />
-        <Card variant="default" className="min-h-[220px] flex items-center justify-center border-dashed">
-          <Text variant="muted" className="text-sm font-medium tracking-wider uppercase">
-            &lt;Experience Placeholder&gt;
-          </Text>
-        </Card>
-      </Section>
-
-      {/* 05 Principles Placeholder */}
-      <Section id="principles" spacing="md">
-        <SectionHeader
-          eyebrow="Principles I Follow"
-          title="Principles that guide everything I build."
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map((i) => (
-            <Card key={i} variant="default" className="min-h-[140px] flex items-center justify-center border-dashed">
-              <Text variant="muted" className="text-xs font-medium uppercase">
-                Principle 0{i}
-              </Text>
-            </Card>
-          ))}
+          {/* Experience Column - ~55% Width (7 of 12 columns) */}
+          <div id="experience" className="lg:col-span-7 scroll-mt-24">
+            <ExperienceSection />
+          </div>
         </div>
       </Section>
 
-      {/* 06 Contact Placeholder */}
-      <Section id="contact" spacing="md">
-        <Card variant="dark" className="min-h-[280px] flex items-center justify-center border-dashed border-white/20">
-          <Text variant="muted" className="text-sm font-medium tracking-wider uppercase text-white/60">
-            &lt;Contact Placeholder&gt;
-          </Text>
-        </Card>
-      </Section>
+      {/* 05 Principles Section */}
+      <PrinciplesSection />
+
+      {/* 06 Contact Section */}
+      <ContactSection />
     </MainLayout>
   );
 }
