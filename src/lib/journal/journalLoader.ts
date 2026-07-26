@@ -28,7 +28,7 @@ function getFilesRecursively(dir: string): string[] {
 /**
  * Robust Zero-Dependency Frontmatter Parser
  */
-function parseFrontmatter(fileContent: string): { data: Record<string, any>; content: string } {
+function parseFrontmatter(fileContent: string): { data: Record<string, unknown>; content: string } {
   const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
   const match = frontmatterRegex.exec(fileContent.trim());
 
@@ -38,7 +38,7 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
 
   const rawYaml = match[1];
   const content = match[2] || "";
-  const data: Record<string, any> = {};
+  const data: Record<string, unknown> = {};
 
   const lines = rawYaml.split(/\r?\n/);
   for (const line of lines) {
@@ -59,13 +59,12 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
       value = value.slice(1, -1);
     }
 
-    // Handle Booleans
+    // Handle Booleans & Arrays
     if (value === "true") {
       data[key] = true;
     } else if (value === "false") {
       data[key] = false;
     } else if (value.startsWith("[") && value.endsWith("]")) {
-      // Handle simple inline arrays: ["AI", "RAG"]
       const arrayContent = value.slice(1, -1).trim();
       if (!arrayContent) {
         data[key] = [];
@@ -108,8 +107,9 @@ export function getAllJournalEntries(): JournalEntry[] {
 
     // Determine platform from frontmatter or parent directory
     let platform: JournalPlatform = "article";
-    if (data.platform) {
-      platform = data.platform.toLowerCase() as JournalPlatform;
+    const dataPlatform = typeof data.platform === "string" ? data.platform : undefined;
+    if (dataPlatform) {
+      platform = dataPlatform.toLowerCase() as JournalPlatform;
     } else if (relativePath.includes("linkedin")) {
       platform = "linkedin";
     } else if (relativePath.includes("medium")) {
@@ -117,28 +117,33 @@ export function getAllJournalEntries(): JournalEntry[] {
     }
 
     // Title fallback
+    const dataTitle = typeof data.title === "string" ? data.title : undefined;
     const title =
-      data.title && data.title.trim() !== ""
-        ? data.title
+      dataTitle && dataTitle.trim() !== ""
+        ? dataTitle
         : titleCaseFromSlug(slug);
 
     // Published date fallback
-    const published = data.published || "2025-05-01";
+    const published = typeof data.published === "string" && data.published ? data.published : "2025-05-01";
 
     // Summary fallback
+    const dataSummary = typeof data.summary === "string" ? data.summary : undefined;
     const summary =
-      data.summary && data.summary.trim() !== ""
-        ? data.summary
+      dataSummary && dataSummary.trim() !== ""
+        ? dataSummary
         : `Engineering insights and notes on ${title.toLowerCase()}.`;
 
     // Tags fallback
     const tags = Array.isArray(data.tags) && data.tags.length > 0
-      ? data.tags
+      ? (data.tags as string[])
       : ["Engineering", "AI"];
 
     // Embed and URLs
-    const embedUrl = data.embed || undefined;
-    const url = data.url || (embedUrl ? embedUrl : undefined);
+    const embedUrl = typeof data.embed === "string" ? data.embed : undefined;
+    const dataUrl = typeof data.url === "string" ? data.url : undefined;
+    const url = dataUrl || (embedUrl ? embedUrl : undefined);
+    const cover = typeof data.cover === "string" ? data.cover : undefined;
+    const readTime = typeof data.readTime === "string" ? data.readTime : "5 min read";
 
     return {
       id: slug,
@@ -149,10 +154,10 @@ export function getAllJournalEntries(): JournalEntry[] {
       featured: Boolean(data.featured),
       summary,
       tags,
-      readTime: data.readTime || "5 min read",
+      readTime,
       embedUrl,
       url,
-      cover: data.cover || undefined,
+      cover,
       content,
     };
   });

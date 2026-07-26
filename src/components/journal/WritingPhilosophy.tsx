@@ -12,7 +12,7 @@ export const WritingPhilosophy = React.forwardRef<HTMLDivElement, WritingPhiloso
       <div
         ref={ref}
         className={cn(
-          "relative w-full rounded-[24px] bg-[#FAF9F7] dark:bg-[#10131B] border border-black/[0.06] dark:border-white/10 p-8 sm:p-12 select-none overflow-hidden",
+          "relative w-full rounded-[24px] bg-[#F4F3F1] dark:bg-[#0B0C14] border border-black/[0.06] dark:border-white/10 p-8 sm:p-12 select-none overflow-hidden",
           className
         )}
         {...props}
@@ -25,11 +25,11 @@ export const WritingPhilosophy = React.forwardRef<HTMLDivElement, WritingPhiloso
             </span>
           </div>
 
-          <blockquote className="text-xl sm:text-2xl font-medium text-[var(--color-text-primary)] leading-relaxed tracking-tight">
+          <blockquote className="text-xl sm:text-2xl font-medium text-slate-900 dark:text-white leading-relaxed tracking-tight">
             “I don&apos;t write to appear knowledgeable. I write to organize my thoughts, document my engineering learning, and leave behind resources that make someone else&apos;s journey a little easier.”
           </blockquote>
 
-          <span className="text-xs font-semibold text-[var(--color-text-secondary)] tracking-tight pt-2">
+          <span className="text-xs font-semibold text-slate-500 dark:text-white/50 tracking-tight pt-2">
             — Mohammad Razim
           </span>
         </div>

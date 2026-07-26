@@ -20,18 +20,16 @@ export function JournalPageClient({ initialEntries, categories }: JournalPageCli
   // Featured entries
   const featuredEntries = initialEntries.filter((e) => e.featured);
 
-  // Filtered entries
-  const filteredEntries = React.useMemo(() => {
-    return initialEntries.filter((entry) => {
-      if (selectedPlatform && entry.platform !== selectedPlatform) {
-        return false;
-      }
-      if (selectedCategory && !entry.tags.includes(selectedCategory)) {
-        return false;
-      }
-      return true;
-    });
-  }, [initialEntries, selectedCategory, selectedPlatform]);
+  // Filtered entries computed directly
+  const filteredEntries = initialEntries.filter((entry) => {
+    if (selectedPlatform && entry.platform !== selectedPlatform) {
+      return false;
+    }
+    if (selectedCategory && !entry.tags.includes(selectedCategory)) {
+      return false;
+    }
+    return true;
+  });
 
   const linkedinEntries = filteredEntries.filter((e) => e.platform === "linkedin");
   const mediumEntries = filteredEntries.filter((e) => e.platform === "medium");
@@ -41,7 +39,7 @@ export function JournalPageClient({ initialEntries, categories }: JournalPageCli
       {/* Editorial Hero */}
       <JournalHero />
 
-      {/* Featured Writing Section */}
+      {/* Featured Writing Section (2-Column Grid to avoid scrolling doom) */}
       {featuredEntries.length > 0 && !selectedCategory && !selectedPlatform && (
         <section className="flex flex-col gap-6">
           <div className="flex items-center justify-between">
@@ -49,7 +47,7 @@ export function JournalPageClient({ initialEntries, categories }: JournalPageCli
               SELECTED ESSAYS & CASE STUDIES
             </span>
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {featuredEntries.map((entry) => (
               <FeaturedArticleCard key={entry.id} entry={entry} />
             ))}

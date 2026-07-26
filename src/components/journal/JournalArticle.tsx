@@ -16,7 +16,6 @@ export const JournalArticle = React.forwardRef<HTMLDivElement, JournalArticlePro
     const date = "published" in article ? article.published : article.date;
     const readTime = article.readTime;
     const isDraft = "isDraft" in article ? article.isDraft : false;
-    const targetUrl = "url" in article && article.url ? article.url : "/journal";
 
     return (
       <div

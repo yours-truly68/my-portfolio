@@ -16,7 +16,7 @@ export const MediumCard = React.forwardRef<HTMLDivElement, MediumCardProps>(
       <div
         ref={ref}
         className={cn(
-          "group relative flex flex-col justify-between rounded-[22px] bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.06] dark:border-white/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/30 hover:shadow-lg select-none",
+          "group relative flex flex-col justify-between rounded-[22px] bg-[#F4F3F1] dark:bg-[#0B0C14] border border-black/[0.06] dark:border-white/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/40 hover:shadow-lg select-none",
           className
         )}
         {...props}
@@ -28,22 +28,22 @@ export const MediumCard = React.forwardRef<HTMLDivElement, MediumCardProps>(
               <div className="w-7 h-7 rounded-lg bg-emerald-500/10 dark:bg-emerald-400/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                 <BookOpen className="w-4 h-4" />
               </div>
-              <span className="text-[0.65rem] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+              <span className="text-[0.65rem] font-bold uppercase tracking-wider text-slate-500 dark:text-white/50">
                 Medium Article • {entry.published}
               </span>
             </div>
 
-            <span className="text-[0.65rem] font-medium text-[var(--color-text-muted)]">
+            <span className="text-[0.65rem] font-medium text-slate-500 dark:text-white/50">
               {entry.readTime}
             </span>
           </div>
 
           {/* Title & Summary */}
           <div className="flex flex-col gap-2 pt-1">
-            <h3 className="text-xl font-extrabold text-[var(--color-text-primary)] leading-tight tracking-tight group-hover:text-[var(--color-brand-primary)] transition-colors duration-200">
+            <h3 className="text-xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight group-hover:text-[var(--color-brand-primary)] transition-colors duration-200">
               {entry.title}
             </h3>
-            <p className="text-xs sm:text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-3 font-normal">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-white/70 leading-relaxed line-clamp-3 font-normal">
               {entry.summary}
             </p>
           </div>
@@ -59,12 +59,12 @@ export const MediumCard = React.forwardRef<HTMLDivElement, MediumCardProps>(
         </div>
 
         {/* CTA Footer */}
-        <div className="pt-6 border-t border-black/[0.04] dark:border-white/[0.04] mt-6">
+        <div className="pt-5 border-t border-black/[0.05] dark:border-white/[0.05] mt-6">
           <a
             href={entry.url || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--color-text-primary)] group-hover:text-[var(--color-brand-primary)] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white group-hover:text-[var(--color-brand-primary)] transition-colors"
           >
             <span>Read on Medium</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
