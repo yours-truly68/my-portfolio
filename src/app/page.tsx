@@ -1,39 +1,18 @@
 import { MainLayout } from "@/components/layout";
+import { Hero } from "@/components/hero";
+import { ProjectsSection } from "@/components/projects";
 import { Section, Card, SectionHeader, Text } from "@/components/ui";
 
 export default function Home() {
   return (
     <MainLayout activeSection="home">
-      {/* 01 Home Placeholder */}
-      <Section id="home" spacing="md">
-        <Card variant="elevated" className="min-h-[480px] flex items-center justify-center border-dashed">
-          <Text variant="muted" className="text-sm font-medium tracking-wider uppercase">
-            &lt;Home Placeholder&gt;
-          </Text>
-        </Card>
+      {/* 01 Home / Hero Section */}
+      <Section id="home" spacing="none">
+        <Hero />
       </Section>
 
-      {/* 02 Projects Placeholder */}
-      <Section id="projects" spacing="md">
-        <SectionHeader
-          eyebrow="Featured Projects"
-          title="Selected Works"
-          action={
-            <Text variant="caption" className="font-semibold uppercase tracking-wider">
-              View All Projects &rarr;
-            </Text>
-          }
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((i) => (
-            <Card key={i} variant="project" className="min-h-[320px] flex items-center justify-center border-dashed">
-              <Text variant="muted" className="text-xs font-medium uppercase">
-                Project 0{i}
-              </Text>
-            </Card>
-          ))}
-        </div>
-      </Section>
+      {/* 02 Featured Projects Section */}
+      <ProjectsSection />
 
       {/* 03 Journal Placeholder */}
       <Section id="journal" spacing="md">
