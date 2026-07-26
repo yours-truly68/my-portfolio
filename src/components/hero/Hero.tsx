@@ -16,11 +16,37 @@ export const Hero = React.forwardRef<HTMLElement, HeroProps>(
     return (
       <section
         ref={ref}
-        className={cn(
-          "relative w-full overflow-hidden rounded-[24px] bg-[#F8F8F6] border border-[rgba(0,0,0,0.04)] shadow-[0_2px_8px_rgba(0,0,0,0.015)] p-6 sm:p-8 lg:px-[36px] lg:py-[32px] transition-all select-none",
-          className
-        )}
         {...props}
+        className={cn(
+          `
+relative
+isolate
+overflow-hidden
+
+w-full
+
+rounded-[24px]
+
+bg-[linear-gradient(
+180deg,
+#FCFCFB_0%,
+#F8F8F6_100%
+)]
+
+px-7
+py-6
+
+lg:px-8
+lg:py-7
+
+border
+border-black/[0.025]
+
+shadow-[0_20px_60px_rgba(0,0,0,.025)]
+
+`,
+          className,
+        )}
       >
         {/* Soft Illuminated Lavender Atmosphere & Faint Geometry Rings */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -47,7 +73,7 @@ export const Hero = React.forwardRef<HTMLElement, HeroProps>(
         </div>
       </section>
     );
-  }
+  },
 );
 
 Hero.displayName = "Hero";

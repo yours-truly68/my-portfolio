@@ -16,7 +16,7 @@ export const HeroPortrait = React.forwardRef<HTMLDivElement, HeroPortraitProps>(
         ref={ref}
         className={cn(
           "relative w-full h-[480px] sm:h-[580px] lg:h-[640px] xl:h-[680px] flex items-end justify-center select-none",
-          className
+          className,
         )}
         {...props}
       >
@@ -29,7 +29,7 @@ export const HeroPortrait = React.forwardRef<HTMLDivElement, HeroPortraitProps>(
             height={1000}
             priority
             unoptimized
-            className="object-cover object-top h-full w-auto max-w-none select-none transition-transform duration-300 hover:scale-[1.005]"
+            className="object-cover object-top h-full w-auto max-w-none select-none transition-transform duration-300 hover:scale-[1.008]"
           />
         </div>
 
@@ -39,7 +39,7 @@ export const HeroPortrait = React.forwardRef<HTMLDivElement, HeroPortraitProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 HeroPortrait.displayName = "HeroPortrait";
