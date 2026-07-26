@@ -24,7 +24,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         variant={isLightCard ? "default" : "dark"}
         padding="none"
         className={cn(
-          "group flex flex-col justify-between h-full min-h-[520px] sm:min-h-[560px] rounded-[24px] p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 border select-none",
+          "group relative flex flex-col justify-between h-full min-h-[520px] sm:min-h-[560px] rounded-[24px] p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 border select-none overflow-hidden",
           isLightCard
             ? "bg-[#F4F3F1] border-[rgba(0,0,0,0.06)] text-[var(--color-text-primary)] shadow-[0_10px_30px_-5px_rgba(18,18,18,0.04)] hover:shadow-[0_20px_40px_-10px_rgba(18,18,18,0.08)]"
             : "bg-[#0B0C14] border-white/10 text-white shadow-[0_12px_36px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_24px_48px_-10px_rgba(0,0,0,0.6)]",
@@ -32,10 +32,10 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         )}
         {...props}
       >
-        {/* Card Header: Number + Icon / Status Badge */}
-        <div className="flex flex-col gap-5">
+        {/* Top Header Bar: Number + Icon / Status Badge */}
+        <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <span className={cn("text-xs font-bold font-mono tracking-widest", isLightCard ? "text-slate-500" : "text-white/50")}>
+            <span className={cn("text-xs font-bold font-mono tracking-widest", isLightCard ? "text-slate-500" : "text-white/40")}>
               {project.number}
             </span>
             {project.status ? (
@@ -49,28 +49,28 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             )}
           </div>
 
-          {/* Title & Description with Improved Spacing */}
+          {/* Title & Description with Refined Hierarchy */}
           <div className="flex flex-col gap-2">
-            <h3 className={cn("text-2xl font-bold tracking-tight", isLightCard ? "text-slate-900" : "text-white")}>
+            <h3 className={cn("text-[26px] font-extrabold tracking-tight leading-tight", isLightCard ? "text-slate-900" : "text-white")}>
               {project.name}
             </h3>
-            <p className={cn("text-xs leading-relaxed line-clamp-2 min-h-[36px]", isLightCard ? "text-slate-600" : "text-white/70")}>
+            <p className={cn("text-xs leading-relaxed line-clamp-2 min-h-[34px]", isLightCard ? "text-slate-500" : "text-white/60")}>
               {project.description}
             </p>
           </div>
 
           {/* Lightweight Tech Stack Pills */}
-          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          <div className="flex flex-wrap items-center gap-1.5">
             {project.techStack.slice(0, 3).map((tech) => (
               <Pill
                 key={tech}
                 variant={isLightCard ? "default" : "dark"}
                 size="sm"
                 className={cn(
-                  "text-[0.65rem] font-medium px-2.5 py-0.5",
+                  "text-[0.65rem] font-medium px-2.5 py-0.5 opacity-90",
                   isLightCard
-                    ? "bg-white/80 text-slate-700 border-black/5"
-                    : "bg-white/10 text-white/80 border-white/10"
+                    ? "bg-white/80 text-slate-600 border-black/5"
+                    : "bg-white/10 text-white/70 border-white/10"
                 )}
               >
                 {tech}
@@ -79,30 +79,27 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
           </div>
         </div>
 
-        {/* Dominant Center UI Graphic Preview */}
-        <div className="my-5">
+        {/* Prominent Integrated Artwork Graphic Area */}
+        <div className="relative mt-4 mb-2 w-full">
           <ProjectMockup projectId={project.id} />
-        </div>
 
-        {/* Bottom Editorial CTA Button */}
-        <div className="flex items-center justify-between pt-2 mt-auto">
-          <span className={cn("text-[0.65rem] font-bold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity", isLightCard ? "text-slate-600" : "text-white/60")}>
-            View Case Study
-          </span>
-          <IconButton
-            variant={isLightCard ? "default" : "dark"}
-            size="sm"
-            aria-label={`View ${project.name} on GitHub`}
-            className={cn(
-              "w-9 h-9 rounded-full transition-transform group-hover:translate-x-0.5",
-              isLightCard
-                ? "bg-white border-black/10 text-slate-900 hover:bg-slate-100"
-                : "bg-white/10 border-white/15 text-white hover:bg-white/20"
-            )}
-            onClick={() => window.open(project.githubUrl, "_blank")}
-          >
-            <ArrowRight className="w-4 h-4" />
-          </IconButton>
+          {/* Floating Action Button (Arrow →) Inset from Edges */}
+          <div className="absolute bottom-4 right-4 z-10">
+            <IconButton
+              variant={isLightCard ? "default" : "dark"}
+              size="sm"
+              aria-label={`View ${project.name} on GitHub`}
+              className={cn(
+                "w-9 h-9 rounded-full shadow-lg transition-transform group-hover:scale-105 active:scale-95",
+                isLightCard
+                  ? "bg-white/90 backdrop-blur border-black/10 text-slate-900 hover:bg-white"
+                  : "bg-white/15 backdrop-blur border-white/20 text-white hover:bg-white/25"
+              )}
+              onClick={() => window.open(project.githubUrl, "_blank")}
+            >
+              <ArrowRight className="w-4 h-4" />
+            </IconButton>
+          </div>
         </div>
       </Card>
     );

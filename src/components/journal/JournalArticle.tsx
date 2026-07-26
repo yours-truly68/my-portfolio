@@ -1,0 +1,49 @@
+"use client";
+
+import * as React from "react";
+import { FileText } from "lucide-react";
+import { JournalArticleItem } from "@/data/portfolioData";
+import { cn } from "@/lib/utils";
+
+export interface JournalArticleProps extends React.HTMLAttributes<HTMLDivElement> {
+  article: JournalArticleItem;
+}
+
+export const JournalArticle = React.forwardRef<HTMLDivElement, JournalArticleProps>(
+  ({ className, article, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "group flex items-center justify-between gap-4 py-6 sm:py-7 border-b border-black/[0.04] dark:border-white/[0.04] transition-colors hover:bg-black/[0.01] dark:hover:bg-white/[0.01] px-1 select-none cursor-pointer",
+          className
+        )}
+        {...props}
+      >
+        {/* Title First, Metadata Second */}
+        <div className="flex flex-col gap-1.5 max-w-md">
+          <h4 className="text-base sm:text-[1.05rem] font-bold tracking-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-brand-primary)] transition-colors leading-snug">
+            {article.title}
+          </h4>
+          <div className="flex items-center gap-2 text-[0.65rem] font-bold tracking-widest text-[var(--color-text-muted)] opacity-70 uppercase">
+            <span>{article.date}</span>
+            <span>•</span>
+            <span>{article.readTime}</span>
+            {article.isDraft && (
+              <span className="ml-1 px-1.5 py-0.2 rounded bg-amber-100/70 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 font-semibold text-[0.6rem]">
+                DRAFT
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Right Minimal Supporting Icon */}
+        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.04] dark:border-white/[0.04] flex items-center justify-center shrink-0 group-hover:border-[var(--color-brand-primary)]/30 transition-colors">
+          <FileText className="w-4 h-4 text-[var(--color-text-muted)] group-hover:text-[var(--color-brand-primary)] transition-colors" />
+        </div>
+      </div>
+    );
+  }
+);
+
+JournalArticle.displayName = "JournalArticle";

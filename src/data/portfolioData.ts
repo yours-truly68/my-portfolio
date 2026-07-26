@@ -48,9 +48,9 @@ export const personalInfo: PersonalInfo = {
   name: "Mohammad Razim",
   title: "Full-Stack AI Engineer",
   location: "Bangalore, India",
-  email: "mrazim.dev@gmail.com",
+  email: "mohammedrazim880@gmail.com",
   github: "https://github.com/yours-truly68",
-  linkedin: "https://linkedin.com/in/mrazim",
+  linkedin: "https://www.linkedin.com/in/mohammadrazim880/",
   summary:
     "Software Engineer specializing in Full-Stack AI applications using Python, TypeScript, FastAPI, and Next.js. Experienced in building production-grade AI systems, developer tooling, Retrieval-Augmented Generation (RAG) pipelines, and scalable backend services with modern software architecture, distributed systems, and LLM frameworks.",
 };
@@ -58,19 +58,42 @@ export const personalInfo: PersonalInfo = {
 export const technicalSkills: SkillCategory[] = [
   {
     category: "Languages",
-    skills: ["Python", "TypeScript", "JavaScript", "SQL", "C"],
+    skills: ["Python", "TypeScript", "JavaScript", "SQL"],
   },
   {
     category: "Frontend",
-    skills: ["Next.js", "React", "Tailwind CSS", "TanStack Query", "Zustand", "shadcn/ui"],
+    skills: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Zustand",
+      "Redux-toolkit",
+      "shadcn/ui",
+    ],
   },
   {
     category: "Backend",
-    skills: ["FastAPI", "Flask", "Node.js", "Express.js", "WebSockets"],
+    skills: [
+      "FastAPI",
+      "Flask",
+      "Node.js",
+      "Express.js",
+      "WebSockets",
+      "BunJS",
+    ],
   },
   {
     category: "Databases & ORMs",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone", "SQLAlchemy", "Prisma", "Mongoose"],
+    skills: [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "Pinecone",
+      "SQLAlchemy",
+      "Prisma",
+      "Mongoose",
+    ],
   },
   {
     category: "AI & LLMs",
@@ -78,7 +101,16 @@ export const technicalSkills: SkillCategory[] = [
   },
   {
     category: "Tools & Concepts",
-    skills: ["Git", "Docker", "Linux", "Postman", "System Design", "Distributed Systems", "Event-Driven Architecture", "RBAC"],
+    skills: [
+      "Git",
+      "Docker",
+      "Linux",
+      "Postman",
+      "System Design",
+      "Distributed Systems",
+      "Event-Driven Architecture",
+      "RBAC",
+    ],
   },
 ];
 
@@ -121,7 +153,14 @@ export const projectsData: ProjectItem[] = [
     subtitle: "Project Management Platform",
     description:
       "Modern kanban platform for high-performance engineering teams with role-based access control.",
-    techStack: ["Next.js", "TypeScript", "FastAPI", "PostgreSQL", "SQLAlchemy", "Zustand"],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Zustand",
+    ],
     githubUrl: "https://github.com/yours-truly68/project-management-system",
     status: "In Progress",
     highlights: [
@@ -138,7 +177,14 @@ export const projectsData: ProjectItem[] = [
     subtitle: "Gale Encyclopedia RAG Chatbot (G-bot)",
     description:
       "RAG-powered medical & encyclopedia assistant for intelligent domain-specific information retrieval.",
-    techStack: ["Python", "LangChain", "OpenAI SDK", "Pinecone", "Flask", "PostgreSQL"],
+    techStack: [
+      "Python",
+      "LangChain",
+      "OpenAI SDK",
+      "Pinecone",
+      "Flask",
+      "PostgreSQL",
+    ],
     githubUrl: "https://github.com/yours-truly68/G-bot",
     darkCard: true,
     highlights: [
@@ -171,7 +217,15 @@ export const projectsData: ProjectItem[] = [
     subtitle: "Distributed Food Ordering Platform",
     description:
       "Event-driven food ordering platform with RabbitMQ, WebSockets real-time sync, and Razorpay payments.",
-    techStack: ["React", "TypeScript", "Node.js", "Express.js", "MongoDB", "RabbitMQ", "WebSockets"],
+    techStack: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "RabbitMQ",
+      "WebSockets",
+    ],
     githubUrl: "https://github.com/yours-truly68/zomato-clone",
     highlights: [
       "Architected a distributed food ordering platform supporting Customers, Restaurant Partners, and Delivery Riders.",
@@ -197,5 +251,79 @@ export const educationData: EducationItem[] = [
     institution: "St. Joseph's English Medium High School, Mankalale, Sagara",
     degree: "10th std",
     grade: "Percentage: 98.08%",
+  },
+];
+
+export interface JournalArticleItem {
+  id: string;
+  date: string;
+  readTime: string;
+  title: string;
+  summary: string;
+  isDraft?: boolean;
+}
+
+export const journalArticles: JournalArticleItem[] = [
+  {
+    id: "event-driven-ai-agents",
+    date: "MAY 18, 2025",
+    readTime: "8 MIN READ",
+    title: "Designing Reliable AI Agents with Event-Driven Systems",
+    summary:
+      "Architectural insights on durable checkpointing, execution state recovery, and decoupled agent execution harnesses.",
+    isDraft: true,
+  },
+  {
+    id: "rag-at-scale",
+    date: "MAY 08, 2025",
+    readTime: "12 MIN READ",
+    title: "RAG at Scale: Lessons from Building Purplexity",
+    summary:
+      "Optimizing vector search retrieval latency, contextual prompt augmentation, and streaming inference pipelines.",
+    isDraft: true,
+  },
+  {
+    id: "building-kando",
+    date: "APR 21, 2025",
+    readTime: "6 MIN READ",
+    title: "Building KANDo: A Modern Kanban for Engineering Teams",
+    summary:
+      "Normalizing PostgreSQL schemas with SQLAlchemy, implementing RBAC authorization, and state management with Zustand.",
+    isDraft: true,
+  },
+];
+
+export interface PrincipleItem {
+  id: string;
+  iconName: "clarity" | "ship" | "iterate" | "share";
+  title: string;
+  description: string;
+}
+
+export const principlesData: PrincipleItem[] = [
+  {
+    id: "clarity",
+    iconName: "clarity",
+    title: "Build with clarity",
+    description:
+      "Simplicity in design, clarity in code, clarity in communication.",
+  },
+  {
+    id: "ship",
+    iconName: "ship",
+    title: "Ship with confidence",
+    description: "Test thoroughly, ship fearlessly, and own the impact.",
+  },
+  {
+    id: "iterate",
+    iconName: "iterate",
+    title: "Iterate with purpose",
+    description: "Learn fast, improve continuously, and build what matters.",
+  },
+  {
+    id: "share",
+    iconName: "share",
+    title: "Share and give back",
+    description: "Knowledge grows when shared. Community matters.",
   },
 ];
