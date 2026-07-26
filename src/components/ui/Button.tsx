@@ -3,20 +3,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none",
   {
     variants: {
       variant: {
         primary:
-          "bg-[var(--color-text-primary)] text-[var(--color-bg-card)] hover:bg-[#1a1a1a] shadow-[var(--shadow-subtle)]",
+          "bg-[#101010] text-white hover:bg-[#262626] dark:bg-white dark:text-[#101010] dark:hover:bg-slate-100 shadow-sm",
         secondary:
-          "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] border border-[var(--color-border-light)] hover:border-[var(--color-border-medium)] hover:bg-[var(--color-bg-card-subtle)] shadow-[var(--shadow-subtle)]",
+          "bg-black/[0.04] dark:bg-white/10 text-[var(--color-text-primary)] border border-black/[0.06] dark:border-white/15 hover:bg-black/[0.08] dark:hover:bg-white/20 hover:border-black/15 dark:hover:border-white/30 shadow-xs",
         ghost:
-          "bg-transparent text-[var(--color-text-primary)] hover:bg-black/5 dark:hover:bg-white/5",
+          "bg-transparent text-[var(--color-text-primary)] hover:bg-black/5 dark:hover:bg-white/10",
         icon:
-          "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] border border-[var(--color-border-light)] rounded-full hover:border-[var(--color-border-medium)] hover:bg-[var(--color-bg-card-subtle)] shadow-[var(--shadow-subtle)] p-2.5",
+          "bg-black/[0.04] dark:bg-white/10 text-[var(--color-text-primary)] border border-black/[0.06] dark:border-white/15 hover:bg-black/[0.08] dark:hover:bg-white/20 rounded-full shadow-xs p-2.5",
         dark:
-          "bg-[var(--color-bg-card-dark)] text-white hover:bg-[#161824] border border-white/10 shadow-[var(--shadow-card)]",
+          "bg-[#0E1015] text-white hover:bg-[#181b28] border border-white/15 shadow-sm",
       },
       size: {
         sm: "h-9 px-3.5 text-xs rounded-lg gap-1.5",

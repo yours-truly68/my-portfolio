@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { ExternalLink } from "lucide-react";
 import { professionalExperience } from "@/data";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +17,7 @@ export const ResumeExperience = React.forwardRef<HTMLDivElement, ResumeExperienc
         {...props}
       >
         <h2 className="text-xs font-bold uppercase tracking-widest text-[var(--color-brand-primary)]">
-          Work Experience
+          Professional Experience
         </h2>
 
         <div className="flex flex-col gap-8">
@@ -32,25 +33,32 @@ export const ResumeExperience = React.forwardRef<HTMLDivElement, ResumeExperienc
                 </span>
               </div>
 
-              {/* Company & Status */}
-              <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-secondary)]">
-                <span className="text-[var(--color-brand-primary)] font-bold">{item.company}</span>
+              {/* Company & Status/Badge */}
+              <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--color-text-secondary)]">
+                {item.link ? (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-brand-primary)] hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>{item.company}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                ) : (
+                  <span className="text-[var(--color-brand-primary)] font-bold">{item.company}</span>
+                )}
+
                 {item.employmentType && (
                   <>
                     <span className="text-slate-300 dark:text-slate-700">•</span>
                     <span>{item.employmentType}</span>
                   </>
                 )}
-                {item.status && (
-                  <span
-                    className={cn(
-                      "px-2 py-0.5 rounded-full text-[0.65rem] font-bold uppercase tracking-wider",
-                      item.status === "Current"
-                        ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                        : "bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
-                    )}
-                  >
-                    {item.status}
+
+                {item.badge && (
+                  <span className="px-2 py-0.5 rounded-full text-[0.625rem] font-bold uppercase tracking-wider bg-purple-500/10 text-[var(--color-brand-primary)] border border-purple-500/15">
+                    {item.badge}
                   </span>
                 )}
               </div>

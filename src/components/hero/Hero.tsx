@@ -39,13 +39,18 @@ export const Hero = React.forwardRef<HTMLElement, HeroProps>(
         ref={ref}
         {...props}
         className={cn(
-          "relative isolate overflow-hidden w-full rounded-[18px] bg-[#F8F8F6] sm:py-8 sm:px-4 lg:py-8 lg:px-6 border border-black/[0.04] shadow-[0_4px_20px_rgba(0,0,0,0.02)] transition-all select-none",
+          "relative isolate overflow-hidden w-full rounded-[18px] bg-[var(--canvas)] sm:py-8 sm:px-4 lg:py-8 lg:px-6 border border-black/[0.025] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.025)] transition-all select-none",
           className,
         )}
       >
-        {/* Soft Radial Ambient Lighting with gentle breathing motion */}
+        {/* Layer 3 — Multiple Overlapping Studio Lighting Sources via var(--hero-lighting) */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-[10%] right-[0%] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle_at_70%_45%,rgba(123,97,255,0.08)_0%,transparent_70%)] blur-2xl animate-breathe" />
+          <div
+            className="absolute inset-0 animate-breathe"
+            style={{
+              background: "var(--hero-lighting)",
+            }}
+          />
         </div>
 
         {/* Desktop 40/60 Content Grid */}

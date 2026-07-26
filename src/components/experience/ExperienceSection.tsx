@@ -5,20 +5,18 @@ import { ArrowRight, Briefcase, Code2, GraduationCap } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { ExperienceTimelineItem } from "./ExperienceTimelineItem";
-import { professionalExperience, educationData } from "@/data/portfolioData";
+import { professionalExperience } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
 export type ExperienceSectionProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSectionProps>(
   ({ className, ...props }, ref) => {
-    const collegeEducation = educationData[0];
-
     return (
       <div ref={ref} className={cn("relative flex flex-col gap-8 select-none", className)} {...props}>
         {/* Miniature Hero Style Heading */}
         <SectionHeader
-          eyebrow="EXPERIENCE"
+          eyebrow="PROFESSIONAL EXPERIENCE"
           title={
             <span className="text-3xl sm:text-4xl font-bold leading-[1.08] tracking-tight block">
               My <span className="font-serif-italic text-[var(--color-brand-primary)] font-normal">journey</span> <br />
@@ -30,7 +28,7 @@ export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSect
               variant="ghost"
               size="sm"
               className="text-[0.7rem] font-bold tracking-wider uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] gap-1.5 p-0 hover:bg-transparent"
-              onClick={() => window.open("/Mohammad_Razim_Professional_CV.pdf", "_blank")}
+              onClick={() => window.open("/resume", "_self")}
             >
               VIEW FULL TIMELINE
               <ArrowRight className="w-3.5 h-3.5" />
@@ -41,36 +39,20 @@ export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSect
         <div className="relative flex justify-between items-start pt-2">
           {/* Vertical Timeline Items List */}
           <div className="flex flex-col w-full max-w-lg">
-            {/* Professional Experience Items from portfolioData.ts */}
+            {/* Curated Professional Experience Items from portfolioData.ts */}
             {professionalExperience.map((exp, idx) => (
               <ExperienceTimelineItem
                 key={`${exp.company}-${idx}`}
                 date={exp.period}
                 company={exp.company}
                 role={exp.role}
+                badge={exp.badge}
+                link={exp.link}
                 description={exp.highlights[0]}
-                dotColor="purple"
+                dotColor={idx === 0 ? "purple" : idx === 1 ? "blue" : "green"}
+                isLast={idx === professionalExperience.length - 1}
               />
             ))}
-
-            {/* Personal & Open Source Experience */}
-            <ExperienceTimelineItem
-              date="2022 — PRESENT"
-              company="Personal & Open Source"
-              role="AI Systems & Tooling"
-              description="Building tools, experimenting with AI systems, RAG pipelines, and contributing to the open-source developer community."
-              dotColor="blue"
-            />
-
-            {/* Education Milestone */}
-            <ExperienceTimelineItem
-              date="EDUCATION"
-              company={collegeEducation.institution}
-              role={collegeEducation.degree}
-              description={`Focused on algorithms, distributed systems, AI applications, and software engineering. (${collegeEducation.grade})`}
-              dotColor="green"
-              isLast
-            />
           </div>
 
           {/* Supporting Floating Icon Elements */}

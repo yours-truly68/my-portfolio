@@ -3,18 +3,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const iconButtonVariants = cva(
-  "inline-flex items-center justify-center rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] disabled:pointer-events-none disabled:opacity-50 active:scale-95 shrink-0",
+  "inline-flex items-center justify-center rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] disabled:pointer-events-none disabled:opacity-50 active:scale-95 shrink-0 select-none",
   {
     variants: {
       variant: {
         default:
-          "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] border border-[var(--color-border-light)] hover:border-[var(--color-border-medium)] hover:bg-[var(--color-bg-card-subtle)] shadow-[var(--shadow-subtle)]",
+          "bg-black/[0.04] dark:bg-white/10 text-[var(--color-text-primary)] border border-black/[0.06] dark:border-white/15 hover:bg-black/[0.08] dark:hover:bg-white/20 hover:border-black/15 dark:hover:border-white/30 shadow-xs",
         ghost:
-          "bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-black/5 dark:hover:bg-white/5",
+          "bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-black/5 dark:hover:bg-white/10",
         dark:
-          "bg-[var(--color-bg-card-dark)] text-white hover:bg-[#181b28] border border-white/10 shadow-[var(--shadow-card)]",
+          "bg-[#0E1015] text-white hover:bg-[#181b28] border border-white/15 shadow-sm",
         brand:
-          "bg-[var(--color-brand-primary)] text-white hover:bg-[var(--color-brand-secondary)] shadow-[var(--shadow-glow-brand)]",
+          "bg-[var(--color-brand-primary)] text-white hover:bg-[#6E52F3] shadow-xs",
       },
       size: {
         sm: "h-8 w-8 text-xs",

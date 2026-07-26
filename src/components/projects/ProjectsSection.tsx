@@ -24,28 +24,31 @@ export const ProjectsSection = React.forwardRef<HTMLElement, ProjectsSectionProp
         className={cn("w-full select-none", className)}
         {...props}
       >
-        {/* Section Header */}
-        <SectionHeader
-          eyebrow="FEATURED PROJECTS"
-          title="Selected Works"
-          action={
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-[0.7rem] font-bold tracking-wider uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] gap-1.5 p-0 hover:bg-transparent"
-              onClick={() => window.open("https://github.com/yours-truly68", "_blank")}
-            >
-              VIEW ALL PROJECTS
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Button>
-          }
-        />
+        {/* Subtle Paper Contrast Background Surface (#FAF9F7 in light mode) */}
+        <div className="w-full rounded-[24px] bg-[#FAF9F7]/60 dark:bg-white/[0.01] p-4 sm:p-6 border border-black/[0.025] dark:border-white/[0.02]">
+          {/* Section Header */}
+          <SectionHeader
+            eyebrow="FEATURED PROJECTS"
+            title="Selected Works"
+            action={
+              <Button
+                variant="ghost"
+                size="sm"
+                className="group text-[0.7rem] font-bold tracking-wider uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] gap-1.5 p-0 hover:bg-transparent transition-colors"
+                onClick={() => window.open("https://github.com/yours-truly68", "_blank")}
+              >
+                VIEW ALL PROJECTS
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+              </Button>
+            }
+          />
 
-        {/* 4-Column Project Card Grid with Increased Gutters */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 items-stretch">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {/* Tighter Curated Gallery Grid with Height Rhythm */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 items-stretch pt-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
         </div>
       </Section>
     );

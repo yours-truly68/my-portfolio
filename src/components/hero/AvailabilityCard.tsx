@@ -19,7 +19,7 @@ export const AvailabilityCard = React.forwardRef<
       variant="glass"
       padding="sm"
       className={cn(
-        "bg-white/95 dark:bg-slate-100/95 backdrop-blur-md border border-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.06)] p-4 sm:p-5 flex flex-col gap-2.5 rounded-[20px] transition-all",
+        "group bg-white/95 dark:bg-slate-100/95 backdrop-blur-md border border-white/90 shadow-[0_10px_30px_rgba(0,0,0,0.06)] p-4 sm:p-5 flex flex-col gap-2.5 rounded-[20px] transition-all duration-200 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)]",
         className
       )}
       {...props}
@@ -41,14 +41,14 @@ export const AvailabilityCard = React.forwardRef<
           variant="brand"
           size="sm"
           aria-label="Contact Mohammad Razim"
-          className="w-8 h-8 rounded-full bg-[#EAE5FF] text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)] hover:text-white shrink-0 shadow-sm transition-colors"
+          className="w-8 h-8 rounded-full bg-[#EAE5FF] text-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)] hover:text-white shrink-0 shadow-sm transition-all duration-200 active:scale-95"
           onClick={() => {
             document
               .getElementById("contact")
               ?.scrollIntoView({ behavior: "smooth" });
           }}
         >
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
         </IconButton>
       </div>
     </Card>

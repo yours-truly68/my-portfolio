@@ -40,7 +40,7 @@ export const HeroActions = React.forwardRef<HTMLDivElement, HeroActionsProps>(
           <Button
             variant="secondary"
             size="lg"
-            className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)] transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
+            className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
             onClick={onResumeClick}
           >
             VIEW RESUME
@@ -51,7 +51,7 @@ export const HeroActions = React.forwardRef<HTMLDivElement, HeroActionsProps>(
             <Button
               variant="secondary"
               size="lg"
-              className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)] transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
+              className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
             >
               VIEW RESUME
               <Download className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5" />

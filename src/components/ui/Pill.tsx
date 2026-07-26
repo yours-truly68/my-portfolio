@@ -3,21 +3,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const pillVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all",
+  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200 select-none",
   {
     variants: {
       variant: {
         default:
-          "bg-[rgba(244,244,242,0.9)] text-[var(--color-text-secondary)] border border-[var(--color-border-light)] hover:bg-[var(--color-bg-card-subtle)]",
+          "bg-black/[0.04] dark:bg-white/10 text-slate-700 dark:text-white/85 border border-black/[0.06] dark:border-white/15 hover:bg-black/[0.08] dark:hover:bg-white/20 hover:border-black/15 dark:hover:border-white/30 hover:text-slate-900 dark:hover:text-white",
         solid:
-          "bg-[var(--color-bg-card)] text-[var(--color-text-primary)] border border-[var(--color-border-light)] shadow-[var(--shadow-subtle)]",
+          "bg-white dark:bg-white/15 text-slate-900 dark:text-white border border-black/10 dark:border-white/20 shadow-xs hover:bg-slate-50 dark:hover:bg-white/25",
         dark:
-          "bg-[#161824] text-white/80 border border-white/10 hover:border-white/20",
+          "bg-white/10 text-white/85 border border-white/15 hover:bg-white/20 hover:border-white/30 hover:text-white",
         outline:
-          "bg-transparent text-[var(--color-text-secondary)] border border-[var(--color-border-medium)]",
+          "bg-transparent text-slate-700 dark:text-white/75 border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white",
       },
       size: {
-        sm: "px-2.5 py-0.5 text-[0.7rem]",
+        sm: "px-2.5 py-0.5 text-[0.675rem]",
         md: "px-3 py-1 text-xs",
         lg: "px-3.5 py-1.5 text-xs font-semibold",
       },

@@ -19,7 +19,7 @@ export const HeroHeading = React.forwardRef<HTMLHeadingElement, HeroHeadingProps
         Building <br />
         intelligent <br />
         systems <br />
-        <span className="font-serif-italic text-[var(--color-brand-primary)] font-normal">that scale.</span>
+        <span className="font-serif-italic text-[#7B61FF] font-normal">that scale.</span>
       </Heading>
     );
   }

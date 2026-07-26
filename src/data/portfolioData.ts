@@ -1,6 +1,6 @@
 /* ==========================================================================
    AUTHORITATIVE PORTFOLIO DATA
-   Source of Truth: src/assets/Mohammad_Razim_Professional_CV.pdf
+   Source of Truth: src/assets/Mohammad_Razim_Professional_CV.pdf & Curated Career Journey
    ========================================================================== */
 
 export interface PersonalInfo {
@@ -28,6 +28,8 @@ export interface ExperienceItem {
   period: string;
   employmentType?: string;
   status?: "Current" | "Completed";
+  badge?: string;
+  link?: string;
   highlights: string[];
 }
 
@@ -69,7 +71,7 @@ export const personalInfo: PersonalInfo = {
 export const technicalSkills: SkillCategory[] = [
   {
     category: "Languages",
-    skills: ["Python", "TypeScript", "JavaScript", "SQL"],
+    skills: ["Python", "TypeScript", "JavaScript", "SQL", "C"],
   },
   {
     category: "Frontend",
@@ -132,9 +134,50 @@ export const professionalExperience: ExperienceItem[] = [
     period: "July 2026 — Present",
     employmentType: "Internship",
     status: "Current",
+    badge: "Current",
     highlights: [
-      "Developing production-grade full-stack and AI applications.",
-      "Collaborating with engineering teams to build scalable software solutions.",
+      "Building production-grade full-stack applications.",
+      "Developing AI-powered internal tools and engineering workflows.",
+      "Collaborating with cross-functional engineering teams.",
+      "Contributing to scalable software architecture and modern development practices.",
+    ],
+  },
+  {
+    company: "Sri Sai Tours",
+    role: "Freelance Full-Stack Developer",
+    period: "2025",
+    badge: "Client Project",
+    link: "https://srisaitours.in",
+    highlights: [
+      "Designed, developed, and deployed the complete website for a travel agency.",
+      "Worked directly with stakeholders to understand business requirements.",
+      "Improved user journeys and booking experience.",
+      "Managed deployment, maintenance, and iterative improvements.",
+    ],
+  },
+  {
+    company: "Peri Pair Trading",
+    role: "Frontend Engineer",
+    period: "2025",
+    badge: "Trading Platform",
+    highlights: [
+      "Built modern dashboards and trading interfaces.",
+      "Developed reusable frontend components.",
+      "Designed analytical workflows for traders.",
+      "Focused on usability, performance, and information hierarchy.",
+    ],
+  },
+  {
+    company: "Tech Trade Solutions Limited",
+    role: "UI Engineer & Design System Contributor",
+    period: "2024 — 2025",
+    badge: "Design System",
+    highlights: [
+      "Helped create and evolve the organization's design system.",
+      "Built reusable UI components.",
+      "Standardized typography, spacing, colors, and component patterns.",
+      "Improved consistency across multiple products.",
+      "Worked closely with designers and engineers.",
     ],
   },
   {
@@ -142,12 +185,13 @@ export const professionalExperience: ExperienceItem[] = [
     role: "Frontend Developer & UI/UX Intern",
     period: "2024 — January 2026",
     employmentType: "Internship",
-    status: "Completed",
+    badge: "Product Design",
     highlights: [
-      "Developed responsive production-ready user interfaces for a Web3 movie review platform.",
-      "Conducted user research and translated wireframes into scalable frontend components.",
-      "Collaborated with designers and engineers to improve usability and user experience.",
-      "Built reusable React components following responsive design principles and modular frontend architecture.",
+      "Designed user-centric interfaces.",
+      "Conducted UX research and interaction design.",
+      "Built responsive production-ready frontend features.",
+      "Collaborated on product design and feature implementation.",
+      "Improved usability through iterative design and user feedback.",
     ],
   },
 ];

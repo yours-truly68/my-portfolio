@@ -111,7 +111,7 @@ body {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  color: var(--color-brand-italic);
+  color: #7B61FF !important;
 }
 
 .gradient-brand {

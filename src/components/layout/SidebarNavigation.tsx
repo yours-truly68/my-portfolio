@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { siteNavigation, NavItem } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
@@ -58,30 +59,37 @@ export const SidebarNavigation = React.forwardRef<
                   onClick={(e) => handleAnchorClick(e, item)}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "group relative flex flex-col pl-5 transition-all duration-300 ease-out",
+                    "group relative flex flex-col pl-5 transition-all duration-200 ease-out",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] rounded-sm",
                     active
-                      ? "text-[var(--color-text-primary)]"
+                      ? "text-[var(--color-text-primary)] font-semibold"
                       : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]",
                   )}
                 >
-                  {/* Left Active Line */}
-                  <span
-                    className={cn(
-                      "absolute left-0 top-0 h-full w-px transition-all duration-300",
-                      active
-                        ? "bg-[var(--color-brand-primary)]"
-                        : "bg-transparent group-hover:bg-[var(--color-border)]",
-                    )}
-                  />
+                  {/* Smooth Sliding Active Indicator Bar using layoutId */}
+                  {active && (
+                    <motion.span
+                      layoutId="sidebarActiveLine"
+                      className="absolute left-0 top-0 h-full w-[2px] bg-[var(--color-brand-primary)] rounded-full"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+
+                  {!active && (
+                    <span className="absolute left-0 top-0 h-full w-px bg-transparent group-hover:bg-black/10 dark:group-hover:bg-white/10 transition-colors duration-200" />
+                  )}
 
                   {/* Number */}
                   <span
                     className={cn(
-                      "text-[10px] tracking-[0.35em] uppercase transition-opacity duration-300",
+                      "text-[10px] tracking-[0.35em] uppercase transition-opacity duration-200",
                       active
-                        ? "opacity-100"
-                        : "opacity-40 group-hover:opacity-70",
+                        ? "opacity-100 font-bold"
+                        : "opacity-40 group-hover:opacity-75",
                     )}
                   >
                     {item.number}
@@ -90,8 +98,8 @@ export const SidebarNavigation = React.forwardRef<
                   {/* Label */}
                   <span
                     className={cn(
-                      "text-[14px] font-medium tracking-[0.08em] transition-transform duration-300",
-                      active ? "translate-x-0" : "group-hover:translate-x-1",
+                      "text-[14px] font-medium tracking-[0.08em] transition-transform duration-200",
+                      active ? "translate-x-0" : "group-hover:translate-x-1.5",
                     )}
                   >
                     {item.label}

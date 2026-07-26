@@ -17,8 +17,14 @@ export const HeroPortrait = React.forwardRef<HTMLDivElement, HeroPortraitProps>(
       const rect = e.currentTarget.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
-      const x = Math.max(-8, Math.min(8, ((e.clientX - cx) / (rect.width / 2)) * 8));
-      const y = Math.max(-8, Math.min(8, ((e.clientY - cy) / (rect.height / 2)) * 8));
+      const x = Math.max(
+        -8,
+        Math.min(8, ((e.clientX - cx) / (rect.width / 2)) * 8),
+      );
+      const y = Math.max(
+        -8,
+        Math.min(8, ((e.clientY - cy) / (rect.height / 2)) * 8),
+      );
       setParallax({ x, y });
     };
 
@@ -32,26 +38,53 @@ export const HeroPortrait = React.forwardRef<HTMLDivElement, HeroPortraitProps>(
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className={cn(
-          "relative w-full h-[480px] sm:h-[580px] lg:h-[640px] xl:h-[680px] flex items-end justify-center select-none overflow-hidden rounded-[24px] group",
+          "relative w-full h-[480px] sm:h-[580px] lg:h-[640px] xl:h-[680px] flex items-end justify-center select-none overflow-hidden rounded-[20px] group",
           className,
         )}
         {...props}
       >
-        {/* Soft Lavender Circular Disc & Technical Geometry Graphic matching image.png */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-          <div className="relative w-[440px] h-[440px] sm:w-[560px] sm:h-[560px] lg:w-[630px] lg:h-[630px] rounded-full bg-gradient-to-tr from-[#F2EDFF]/30 via-[#ECE6FF]/60 to-[#E6DFFF] flex items-center justify-center animate-breathe">
-            {/* Fine Diagonal Axis Technical Drawing Line */}
-            <div className="absolute w-[140%] h-[2px] bg-[#7B61FF]/25 -rotate-35" />
+        {/* Layer 3 — Overlapping Ambient Studio Lighting Sources */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div
+            className="absolute inset-0 animate-breathe opacity-95"
+            style={{
+              background: "var(--hero-lighting)",
+            }}
+          />
+        </div>
 
-            {/* Top-Right Technical Compass Star / Crosshair Axis Mark */}
+        {/* Layer 4 — Blueprint Geometry (4% - 12% Opacity Engineering Graphics) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          {/* Main Editorial Lavender Graphic Disc */}
+          <div
+            className="relative w-[440px] h-[440px] sm:w-[560px] sm:h-[560px] lg:w-[630px] lg:h-[630px] rounded-full flex items-center justify-center"
+            style={{
+              background: "var(--hero-disc)",
+              boxShadow: "var(--shadow-hero)",
+            }}
+          >
+            {/* Fine Diagonal Axis Drawing Line (8% Opacity) */}
+            <div className="absolute w-[140%] h-[1px] bg-[var(--blueprint)] -rotate-35" />
+            <div className="absolute w-[140%] h-[1px] bg-[var(--blueprint)] rotate-55" />
+
+            {/* Construction Circle 1 (10% Opacity) */}
+            <div className="absolute inset-8 sm:inset-10 rounded-full border border-[var(--blueprint-strong)] border-dashed" />
+
+            {/* Alignment Guide Ring 2 (6% Opacity) */}
+            <div className="absolute inset-16 sm:inset-20 rounded-full border border-[var(--blueprint)]" />
+
+            {/* Top-Right Technical Compass Star Crosshair Axis Mark (14% Opacity) */}
             <div className="absolute top-[14%] right-[14%] w-7 h-7 flex items-center justify-center">
-              <div className="absolute w-full h-[1px] bg-[#7B61FF]/30" />
-              <div className="absolute h-full w-[1px] bg-[#7B61FF]/30" />
-              <div className="w-2.5 h-2.5 rounded-full border border-[#7B61FF]/40" />
+              <div className="absolute w-full h-[1px] bg-[var(--blueprint-crosshair)]" />
+              <div className="absolute h-full w-[1px] bg-[var(--blueprint-crosshair)]" />
+              <div className="w-2.5 h-2.5 rounded-full border border-[var(--blueprint-crosshair)] bg-white/40" />
             </div>
 
-            {/* Concentric Inner Ring Trace */}
-            <div className="absolute inset-8 rounded-full border border-[#7B61FF]/10" />
+            {/* Bottom-Left Measurement Cross Mark (8% Opacity) */}
+            <div className="absolute bottom-[16%] left-[16%] w-4 h-4 flex items-center justify-center">
+              <div className="absolute w-full h-[1px] bg-[var(--blueprint)]" />
+              <div className="absolute h-full w-[1px] bg-[var(--blueprint)]" />
+            </div>
           </div>
         </div>
 
@@ -62,6 +95,9 @@ export const HeroPortrait = React.forwardRef<HTMLDivElement, HeroPortraitProps>(
             transform: `translate3d(${parallax.x}px, ${parallax.y}px, 0px)`,
           }}
         >
+          {/* Subtle Ambient Rim Light Diffusion */}
+          <div className="absolute bottom-10 w-64 h-64 rounded-full bg-[radial-gradient(circle_at_center,rgba(123,97,255,0.12)_0%,transparent_70%)] blur-2xl pointer-events-none" />
+
           <Image
             src={imageSrc}
             alt="Mohammad Razim - Full-Stack AI Engineer"

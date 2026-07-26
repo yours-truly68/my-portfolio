@@ -1,74 +1,169 @@
 /* ==========================================================================
-   COLOR TOKENS
-   Visual Source of Truth: REFERENCE.md / image.png
+   EDITORIAL LIGHTING SYSTEM v2
+   Design Philosophy: "Illuminated, Not Decorated."
    ========================================================================== */
 
 :root {
-  /* Warm Canvas & Card Palette */
-  --color-bg-canvas: #f8f8f6;
-  --color-bg-canvas-alt: #f9f8f7;
-  --color-bg-card: #fcfcfc;
-  --color-bg-card-subtle: #f4f4f2;
-  --color-bg-card-dark: #0a0b10;
-  --color-bg-card-dark-alt: #10121a;
-  --color-bg-sidebar: rgba(250, 249, 247, 0.85);
+  /* ==========================================================================
+     LAYER 1 — EDITORIAL CANVAS
+     ========================================================================== */
+  --canvas: #F8F8F6;
+  --canvas-soft: #FAF9F7;
+  --canvas-warm: #FBFAF8;
+  --canvas-highlight: #FDFCFA;
+  --color-bg-canvas: var(--canvas);
+  --color-bg-canvas-alt: var(--canvas-soft);
 
-  /* Deep High-Contrast Text Hierarchy */
-  --color-text-primary: #121212;
-  --color-text-secondary: #555555;
-  --color-text-muted: #888888;
-  --color-text-inverse: #fcfcfc;
+  /* ==========================================================================
+     LAYER 2 — MATERIAL SURFACES
+     ========================================================================== */
+  --surface-primary: rgba(255, 255, 255, 0.74);
+  --surface-secondary: rgba(255, 255, 255, 0.88);
+  --surface-floating: rgba(255, 255, 255, 0.94);
+  --surface-glass: rgba(255, 255, 255, 0.82);
+  --surface-dark: #0E1015;
 
-  /* Refined Lavender-Purple Brand Palette */
-  --color-brand-primary: #7b61ff;
-  --color-brand-secondary: #6c52ed;
-  --color-brand-accent: #5e43e2;
-  --color-brand-lavender: #7a6af5;
-  --color-brand-italic: #7b61ff;
-  --color-brand-gradient: linear-gradient(
-    135deg,
-    #7b61ff 0%,
-    #a855f7 50%,
-    #4f46e5 100%
-  );
+  --color-bg-card: var(--surface-primary);
+  --color-bg-card-subtle: var(--surface-secondary);
+  --color-bg-card-dark: var(--surface-dark);
+  --color-bg-sidebar: rgba(248, 248, 246, 0.88);
 
-  /* Status Colors */
-  --color-status-active: #10b981;
-  --color-status-active-bg: rgba(16, 185, 129, 0.1);
-  --color-status-progress: #f59e0b;
+  /* ==========================================================================
+     LAVENDER SCALE
+     ========================================================================== */
+  --lavender-50: #F7F4FF;
+  --lavender-100: #F2EDFF;
+  --lavender-200: #ECE6FF;
+  --lavender-300: #E6DFFF;
+  --lavender-400: #D6C8FF;
+  --lavender-500: #7B61FF;
+  --lavender-600: #6E52F3;
+  --lavender-700: #5D42DA;
 
-  /* Borders */
-  --color-border-light: rgba(0, 0, 0, 0.06);
-  --color-border-medium: rgba(0, 0, 0, 0.12);
-  --color-border-dark: rgba(255, 255, 255, 0.08);
+  --color-brand-primary: var(--lavender-500);
+  --color-brand-secondary: var(--lavender-600);
+  --color-brand-accent: var(--lavender-700);
+  --color-brand-italic: #7B61FF;
 
-  /* Elevation Surfaces */
-  --surface-base: var(--color-bg-canvas);
-  --surface-card: var(--color-bg-card);
-  --surface-raised: #ffffff;
-  --surface-floating: rgba(252, 252, 252, 0.95);
-  --surface-overlay: rgba(18, 18, 18, 0.6);
-  --surface-dark: var(--color-bg-card-dark);
+  /* ==========================================================================
+     LAYER 3 — ATMOSPHERIC LIGHTING
+     ========================================================================== */
+  --ambient-purple-xs: rgba(123, 97, 255, 0.04);
+  --ambient-purple-sm: rgba(123, 97, 255, 0.08);
+  --ambient-purple-md: rgba(123, 97, 255, 0.12);
+  --ambient-purple-lg: rgba(123, 97, 255, 0.18);
+  --ambient-purple-xl: rgba(123, 97, 255, 0.24);
+  --ambient-white: rgba(255, 255, 255, 0.6);
+
+  /* Hero Lighting */
+  --hero-lighting: radial-gradient(
+      ellipse at 72% 40%,
+      rgba(123, 97, 255, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 55% 18%,
+      rgba(236, 230, 255, 0.48),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse at 85% 55%,
+      rgba(242, 237, 255, 0.3),
+      transparent 65%
+    );
+
+  /* Hero Disc */
+  --hero-disc: linear-gradient(135deg, #E6DFFF 0%, #ECE6FF 45%, #F2EDFF 100%);
+
+  /* ==========================================================================
+     LAYER 4 — BLUEPRINT GEOMETRY
+     ========================================================================== */
+  --blueprint: rgba(123, 97, 255, 0.05);
+  --blueprint-strong: rgba(123, 97, 255, 0.1);
+  --blueprint-crosshair: rgba(123, 97, 255, 0.14);
+
+  /* ==========================================================================
+     TYPOGRAPHY
+     ========================================================================== */
+  --text-primary: #101010;
+  --text-secondary: #565656;
+  --text-muted: #8C8C8C;
+  --text-caption: #A9A9A9;
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: #FCFCFC;
+
+  /* ==========================================================================
+     STATUS
+     ========================================================================== */
+  --color-status-active: #10B981;
+  --color-status-active-bg: rgba(16, 185, 129, 0.12);
+
+  /* ==========================================================================
+     BORDERS
+     ========================================================================== */
+  --color-border-light: rgba(17, 17, 17, 0.04);
+  --color-border-medium: rgba(17, 17, 17, 0.08);
+  --color-border-focus: rgba(123, 97, 255, 0.24);
+
+  /* ==========================================================================
+     SHADOWS
+     ========================================================================== */
+  --shadow-xs: 0 2px 8px rgba(15, 15, 15, 0.03);
+  --shadow-sm: 0 10px 30px rgba(20, 20, 20, 0.05);
+  --shadow-md: 0 24px 60px rgba(20, 20, 20, 0.08);
+  --shadow-lg: 0 40px 100px rgba(20, 20, 20, 0.1);
+  --shadow-purple: 0 0 80px rgba(123, 97, 255, 0.08);
+  --shadow-hero: 0 40px 120px rgba(123, 97, 255, 0.12);
+
+  /* ==========================================================================
+     SEMANTIC TOKENS
+     ========================================================================== */
+  --color-page-background: var(--canvas);
+  --color-section-background: var(--canvas-soft);
+  --color-card-background: var(--surface-primary);
+  --color-card-elevated: var(--surface-floating);
+  --color-accent: var(--lavender-500);
+  --color-accent-soft: var(--lavender-100);
+  --color-focus-ring: rgba(123, 97, 255, 0.24);
+  --lighting-hero: var(--hero-lighting);
+  --lighting-ambient: var(--ambient-purple-md);
 }
 
+/* ==========================================================================
+   DARK MODE
+   ========================================================================== */
 [data-theme="dark"],
 .dark {
-  --color-bg-canvas: #090a0f;
-  --color-bg-canvas-alt: #0c0e15;
-  --color-bg-card: #12141d;
-  --color-bg-card-subtle: #181b28;
-  --color-bg-sidebar: rgba(18, 20, 29, 0.85);
+  --canvas: #0B0D13;
+  --canvas-soft: #10131B;
+  --canvas-warm: #141824;
+  --color-bg-canvas: var(--canvas);
+  --color-bg-canvas-alt: var(--canvas-soft);
 
-  --color-text-primary: #fcfcfc;
-  --color-text-secondary: #a0a0a0;
-  --color-text-muted: #666666;
-  --color-text-inverse: #121212;
+  --surface-primary: rgba(18, 21, 32, 0.92);
+  --surface-secondary: rgba(23, 26, 38, 0.94);
+  --surface-floating: rgba(30, 34, 48, 0.96);
 
-  --color-border-light: rgba(255, 255, 255, 0.08);
-  --color-border-medium: rgba(255, 255, 255, 0.16);
+  --color-bg-card: var(--surface-primary);
+  --color-bg-card-subtle: var(--surface-secondary);
+  --color-bg-sidebar: rgba(11, 13, 19, 0.9);
 
-  --surface-base: var(--color-bg-canvas);
-  --surface-card: var(--color-bg-card);
-  --surface-raised: #181b28;
-  --surface-floating: rgba(18, 20, 29, 0.95);
+  --color-text-primary: #FCFCFC;
+  --color-text-secondary: #B0B0B0;
+  --color-text-muted: #7B7B7B;
+  --color-text-inverse: #101010;
+  --color-brand-italic: #7B61FF;
+
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-medium: rgba(255, 255, 255, 0.1);
+
+  --shadow-xs: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 12px 32px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 40px 100px rgba(0, 0, 0, 0.5);
+  --shadow-purple: 0 0 80px rgba(123, 97, 255, 0.14);
+  --shadow-hero: 0 40px 120px rgba(123, 97, 255, 0.18);
 }

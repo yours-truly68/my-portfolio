@@ -92,7 +92,7 @@ export const ResumeHero = React.forwardRef<HTMLDivElement, ResumeHeroProps>(
               variant="primary"
               size="sm"
               onClick={() => window.open("/Mohammad_Razim_Professional_CV.pdf", "_blank")}
-              className="rounded-full shadow-sm text-xs font-bold px-4 py-2"
+              className="rounded-full text-xs font-bold px-4 py-2 hover:scale-[1.02] transition-transform"
             >
               <Download className="w-3.5 h-3.5 mr-1.5" />
               Download PDF
@@ -102,7 +102,7 @@ export const ResumeHero = React.forwardRef<HTMLDivElement, ResumeHeroProps>(
               variant="secondary"
               size="sm"
               onClick={handlePrint}
-              className="rounded-full text-xs font-semibold px-4 py-2 no-print"
+              className="rounded-full text-xs font-semibold px-4 py-2 no-print hover:scale-[1.02] transition-transform"
             >
               <Printer className="w-3.5 h-3.5 mr-1.5" />
               Print
@@ -112,7 +112,7 @@ export const ResumeHero = React.forwardRef<HTMLDivElement, ResumeHeroProps>(
               variant="secondary"
               size="sm"
               onClick={() => (window.location.href = `mailto:${personalInfo.email}`)}
-              className="rounded-full text-xs font-semibold px-4 py-2"
+              className="rounded-full text-xs font-semibold px-4 py-2 hover:scale-[1.02] transition-transform"
             >
               <Mail className="w-3.5 h-3.5 mr-1.5" />
               Email Me

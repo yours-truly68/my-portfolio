@@ -21,11 +21,12 @@ export const ContactSection = React.forwardRef<HTMLElement, ContactSectionProps>
         className={cn("w-full select-none scroll-mt-24", className)}
         {...props}
       >
-        {/* Dark Cinematic Second Hero Container */}
-        <div className="relative w-full rounded-[24px] bg-[#0B0C14] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden text-white">
-          {/* Subtle Purple Atmospheric Radial Diffusion Glow */}
+        {/* Deep Charcoal Environment #0E1015 */}
+        <div className="relative w-full rounded-[24px] bg-[#0E1015] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-[0_24px_60px_rgba(0,0,0,0.6)] overflow-hidden text-white">
+          {/* Distant Purple Horizon & Volumetric Lighting Mist */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(123,97,255,0.2)_0%,rgba(168,85,247,0.06)_50%,transparent_75%)] blur-3xl" />
+            <div className="absolute -bottom-[30%] -left-[10%] w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(123,97,255,0.20)_0%,rgba(168,85,247,0.06)_45%,transparent_75%)] blur-3xl animate-breathe" />
+            <div className="absolute top-[5%] right-[5%] w-[450px] h-[450px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_70%)] blur-2xl" />
           </div>
 
           {/* Three-Column Desktop Layout (40% / 30% / 30%) */}
@@ -50,13 +51,13 @@ export const ContactSection = React.forwardRef<HTMLElement, ContactSectionProps>
                 <Button
                   variant="primary"
                   size="lg"
-                  className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-6 h-11 gap-2 bg-white text-slate-950 hover:bg-slate-100 shadow-lg"
+                  className="group font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-6 h-11 gap-2 bg-white text-slate-950 hover:bg-slate-100 shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
                   onClick={() => {
-                    window.location.href = "mailto:mrazim.dev@gmail.com";
+                    window.location.href = "mailto:mohammedrazim880@gmail.com";
                   }}
                 >
                   START A CONVERSATION
-                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-950" />
+                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-950 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Button>
               </div>
             </div>

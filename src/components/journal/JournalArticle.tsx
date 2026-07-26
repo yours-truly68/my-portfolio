@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { FileText, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { JournalArticleItem } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
