@@ -11,6 +11,10 @@ export interface PersonalInfo {
   github: string;
   linkedin: string;
   summary: string;
+  currentRole: string;
+  currentEmployer: string;
+  availabilityStatus: string;
+  terminalAvailability: string;
 }
 
 export interface SkillCategory {
@@ -22,6 +26,8 @@ export interface ExperienceItem {
   company: string;
   role: string;
   period: string;
+  employmentType?: string;
+  status?: "Current" | "Completed";
   highlights: string[];
 }
 
@@ -53,6 +59,11 @@ export const personalInfo: PersonalInfo = {
   linkedin: "https://www.linkedin.com/in/mohammadrazim880/",
   summary:
     "Software Engineer specializing in Full-Stack AI applications using Python, TypeScript, FastAPI, and Next.js. Experienced in building production-grade AI systems, developer tooling, Retrieval-Augmented Generation (RAG) pipelines, and scalable backend services with modern software architecture, distributed systems, and LLM frameworks.",
+  currentRole: "Software Development Intern",
+  currentEmployer: "Fortune Group",
+  availabilityStatus: "Software Development Intern @ Fortune Group",
+  terminalAvailability:
+    "Currently Software Development Intern at Fortune Group. Open to impactful engineering opportunities and collaborations.",
 };
 
 export const technicalSkills: SkillCategory[] = [
@@ -116,9 +127,22 @@ export const technicalSkills: SkillCategory[] = [
 
 export const professionalExperience: ExperienceItem[] = [
   {
+    company: "Fortune Group",
+    role: "Software Development Intern",
+    period: "July 2026 — Present",
+    employmentType: "Internship",
+    status: "Current",
+    highlights: [
+      "Developing production-grade full-stack and AI applications.",
+      "Collaborating with engineering teams to build scalable software solutions.",
+    ],
+  },
+  {
     company: "Dflix",
     role: "Frontend Developer & UI/UX Intern",
-    period: "2024 — PRESENT",
+    period: "2024 — January 2026",
+    employmentType: "Internship",
+    status: "Completed",
     highlights: [
       "Developed responsive production-ready user interfaces for a Web3 movie review platform.",
       "Conducted user research and translated wireframes into scalable frontend components.",

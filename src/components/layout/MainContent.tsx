@@ -10,14 +10,14 @@ export const MainContent = React.forwardRef<HTMLDivElement, MainContentProps>(
         ref={ref}
         className={cn(
           "min-h-screen w-full lg:pl-[var(--sidebar-width)] flex flex-col transition-all",
-          className
+          className,
         )}
         {...props}
       >
         {children}
       </main>
     );
-  }
+  },
 );
 
 MainContent.displayName = "MainContent";

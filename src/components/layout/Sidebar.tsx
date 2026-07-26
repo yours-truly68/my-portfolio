@@ -16,17 +16,27 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <aside
         ref={ref}
         className={cn(
-          "fixed top-0 left-0 z-[var(--z-sidebar)] hidden lg:flex flex-col h-screen w-[var(--sidebar-width)] bg-[var(--color-bg-sidebar)] backdrop-blur-[var(--blur-md)] border-r border-[var(--color-border-light)] justify-between overflow-y-auto select-none",
-          className
+          "fixed inset-y-0 left-0 z-[var(--z-sidebar)] hidden lg:grid",
+          "w-[var(--sidebar-width)]",
+          "grid-rows-[auto_1fr_auto]",
+          "border-r border-black/5",
+          "bg-[var(--color-bg-primary)]",
+          "px-10 py-12",
+          "select-none",
+          className,
         )}
         {...props}
       >
         <SidebarLogo />
-        <SidebarNavigation activeId={activeSection} />
+
+        <div className="flex items-center">
+          <SidebarNavigation activeId={activeSection} />
+        </div>
+
         <SidebarFooter />
       </aside>
     );
-  }
+  },
 );
 
 Sidebar.displayName = "Sidebar";

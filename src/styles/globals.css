@@ -6,6 +6,7 @@
 @import "./tokens/shadows.css";
 @import "./tokens/animations.css";
 @import "./layout.css";
+@import "./print.css";
 
 /* ==========================================================================
    BASE RESETS & REUSABLE UTILITY CLASSES
@@ -57,7 +58,7 @@ body {
 
 .content-width {
   width: 100%;
-  max-width: 960px;
+  max-width: 1024px;
 }
 
 .section-padding {

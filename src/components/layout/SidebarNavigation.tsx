@@ -1,59 +1,101 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { siteNavigation, NavItem } from "@/config/navigation";
 import { cn } from "@/lib/utils";
-
-export interface NavItem {
-  id: string;
-  number: string;
-  label: string;
-  href: string;
-}
-
-export const defaultNavItems: NavItem[] = [
-  { id: "home", number: "01", label: "HOME", href: "#home" },
-  { id: "projects", number: "02", label: "PROJECTS", href: "#projects" },
-  { id: "journal", number: "03", label: "JOURNAL", href: "#journal" },
-  { id: "experience", number: "04", label: "EXPERIENCE", href: "#experience" },
-  { id: "principles", number: "05", label: "PRINCIPLES", href: "#principles" },
-  { id: "contact", number: "06", label: "CONTACT", href: "#contact" },
-];
 
 export interface SidebarNavigationProps extends React.HTMLAttributes<HTMLElement> {
   items?: NavItem[];
   activeId?: string;
 }
 
-export const SidebarNavigation = React.forwardRef<HTMLElement, SidebarNavigationProps>(
-  ({ className, items = defaultNavItems, activeId = "home", ...props }, ref) => {
+export const SidebarNavigation = React.forwardRef<
+  HTMLElement,
+  SidebarNavigationProps
+>(
+  (
+    { className, items = siteNavigation, activeId = "home", ...props },
+    ref,
+  ) => {
+    const pathname = usePathname();
+
+    const handleAnchorClick = (
+      e: React.MouseEvent<HTMLAnchorElement>,
+      item: NavItem
+    ) => {
+      // If we are on homepage and clicking an anchor, smooth scroll locally
+      if (pathname === "/" && item.type === "anchor") {
+        if (item.id === "home") {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          const el = document.getElementById(item.id);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }
+    };
+
     return (
       <nav
         ref={ref}
-        aria-label="Main Navigation"
-        className={cn("flex flex-col gap-2 my-auto px-4", className)}
+        aria-label="Primary Global Navigation"
+        className={cn("w-44", className)}
         {...props}
       >
-        <ul className="flex flex-col gap-3">
+        <ul className="flex flex-col gap-8">
           {items.map((item) => {
-            const isActive = activeId === item.id;
+            const active = activeId === item.id;
+
             return (
               <li key={item.id}>
                 <Link
                   href={item.href}
+                  onClick={(e) => handleAnchorClick(e, item)}
+                  aria-current={active ? "page" : undefined}
                   className={cn(
-                    "group flex flex-col gap-0.5 text-[0.7rem] font-bold tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] rounded-sm py-1",
-                    isActive
-                      ? "text-[var(--color-brand-primary)]"
-                      : "text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+                    "group relative flex flex-col pl-5 transition-all duration-300 ease-out",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] rounded-sm",
+                    active
+                      ? "text-[#101010] dark:text-white"
+                      : "text-[#5E5E5E] dark:text-slate-400 hover:text-[#101010]"
                   )}
-                  aria-current={isActive ? "page" : undefined}
                 >
-                  <span className="flex items-center gap-1.5">
-                    {item.number}
-                    {isActive && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-brand-primary)]" />
+                  {/* Left Active Line */}
+                  <span
+                    className={cn(
+                      "absolute left-0 top-0 h-full w-px transition-all duration-300",
+                      active
+                        ? "bg-[var(--color-brand-primary)]"
+                        : "bg-transparent group-hover:bg-[#ECE9E6]",
                     )}
+                  />
+
+                  {/* Number */}
+                  <span
+                    className={cn(
+                      "text-[10px] tracking-[0.35em] uppercase font-mono transition-opacity duration-300",
+                      active
+                        ? "text-[#101010] dark:text-white font-bold"
+                        : "text-[#B8B8B8] font-normal group-hover:text-[#5E5E5E]",
+                    )}
+                  >
+                    {item.number}
                   </span>
-                  <span className="uppercase">{item.label}</span>
+
+                  {/* Label */}
+                  <span
+                    className={cn(
+                      "text-[14px] font-medium tracking-[0.08em] transition-transform duration-300",
+                      active ? "translate-x-0 font-semibold" : "group-hover:translate-x-1",
+                    )}
+                  >
+                    {item.label}
+                  </span>
                 </Link>
               </li>
             );
@@ -61,7 +103,7 @@ export const SidebarNavigation = React.forwardRef<HTMLElement, SidebarNavigation
         </ul>
       </nav>
     );
-  }
+  },
 );
 
 SidebarNavigation.displayName = "SidebarNavigation";

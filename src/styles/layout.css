@@ -4,11 +4,11 @@
 
 :root {
   /* Slim Desktop Sidebar Width */
-  --sidebar-width: 170px;
+  --sidebar-width: 240px;
 
   /* Container & Grid Tokens */
-  --container-max: 1360px;
-  --grid-max-width: 1360px;
+  --container-max: 1760px;
+  --grid-max-width: 1440px;
   --grid-columns: 12;
   --grid-gap: 24px;
 

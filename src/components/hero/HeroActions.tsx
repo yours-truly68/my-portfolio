@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -34,20 +35,29 @@ export const HeroActions = React.forwardRef<HTMLDivElement, HeroActionsProps>(
           EXPLORE MY WORK
           <ArrowUpRight className="w-3.5 h-3.5" />
         </Button>
-        <Button
-          variant="secondary"
-          size="lg"
-          className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)]"
-          onClick={
-            onResumeClick ||
-            (() => {
-              window.open("/Mohammad_Razim_Professional_CV.pdf", "_blank");
-            })
-          }
-        >
-          VIEW RESUME
-          <Download className="w-3.5 h-3.5" />
-        </Button>
+
+        {onResumeClick ? (
+          <Button
+            variant="secondary"
+            size="lg"
+            className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)]"
+            onClick={onResumeClick}
+          >
+            VIEW RESUME
+            <Download className="w-3.5 h-3.5" />
+          </Button>
+        ) : (
+          <Link href="/resume">
+            <Button
+              variant="secondary"
+              size="lg"
+              className="font-bold text-[0.7rem] uppercase tracking-wider rounded-xl px-5 h-11 gap-2 bg-[var(--color-bg-card-subtle)] border-[var(--color-border-light)] text-[var(--color-text-primary)]"
+            >
+              VIEW RESUME
+              <Download className="w-3.5 h-3.5" />
+            </Button>
+          </Link>
+        )}
       </div>
     );
   },

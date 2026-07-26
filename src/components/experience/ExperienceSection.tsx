@@ -12,8 +12,6 @@ export type ExperienceSectionProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSectionProps>(
   ({ className, ...props }, ref) => {
-    // CV Experience Data
-    const workExperience = professionalExperience[0];
     const collegeEducation = educationData[0];
 
     return (
@@ -43,16 +41,19 @@ export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSect
         <div className="relative flex justify-between items-start pt-2">
           {/* Vertical Timeline Items List */}
           <div className="flex flex-col w-full max-w-lg">
-            {/* 1. Dflix Work Experience */}
-            <ExperienceTimelineItem
-              date={`${workExperience.period}`}
-              company={workExperience.company}
-              role={workExperience.role}
-              description={workExperience.highlights[0]}
-              dotColor="purple"
-            />
+            {/* Professional Experience Items from portfolioData.ts */}
+            {professionalExperience.map((exp, idx) => (
+              <ExperienceTimelineItem
+                key={`${exp.company}-${idx}`}
+                date={exp.period}
+                company={exp.company}
+                role={exp.role}
+                description={exp.highlights[0]}
+                dotColor="purple"
+              />
+            ))}
 
-            {/* 2. Personal & Open Source Experience */}
+            {/* Personal & Open Source Experience */}
             <ExperienceTimelineItem
               date="2022 — PRESENT"
               company="Personal & Open Source"
@@ -61,7 +62,7 @@ export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSect
               dotColor="blue"
             />
 
-            {/* 3. Education Milestone */}
+            {/* Education Milestone */}
             <ExperienceTimelineItem
               date="EDUCATION"
               company={collegeEducation.institution}

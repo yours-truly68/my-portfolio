@@ -1,0 +1,44 @@
+/* ==========================================================================
+   PRINT STYLESHEET
+   Clean A4/Letter PDF print optimizations for /resume route
+   ========================================================================== */
+
+@media print {
+  /* Hide interactive layout controls */
+  aside,
+  nav,
+  header button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset layout margins for standard paper */
+  body,
+  main,
+  .content-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #121212 !important;
+    box-shadow: none !important;
+  }
+
+  /* Ensure background fills & colors print cleanly */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Page break rules */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  article, .break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { personalInfo } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
 export type ContactTerminalProps = React.HTMLAttributes<HTMLDivElement>;
@@ -41,7 +42,7 @@ export const ContactTerminal = React.forwardRef<HTMLDivElement, ContactTerminalP
           <div>
             <span className="text-slate-500 font-bold">&gt; availability</span>
             <p className="text-emerald-400 font-medium">
-              Open to full-time opportunities &amp; impactful projects
+              {personalInfo.terminalAvailability}
             </p>
           </div>
 
