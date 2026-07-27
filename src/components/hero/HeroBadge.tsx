@@ -10,7 +10,7 @@ export const HeroBadge = React.forwardRef<HTMLDivElement, HeroBadgeProps>(
   ({ className, label = "FULL STACK AI ENGINEER", ...props }, ref) => {
     return (
       <div ref={ref} className={cn("inline-flex items-center", className)} {...props}>
-        <Badge variant="brand" size="md" dot className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
+        <Badge variant="brand" size="md" dot className="px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
           {label}
         </Badge>
       </div>
