@@ -51,7 +51,9 @@ const themeListeners = new Set<() => void>();
 
 function getThemeSnapshot(): "light" | "dark" {
   if (typeof window !== "undefined") {
-    return (localStorage.getItem("portfolio-theme") as "light" | "dark") || "dark";
+    return (
+      (localStorage.getItem("portfolio-theme") as "light" | "dark") || "dark"
+    );
   }
   return "dark";
 }
@@ -79,7 +81,7 @@ export const SidebarFooter = React.forwardRef<
   const theme = React.useSyncExternalStore(
     subscribeTheme,
     getThemeSnapshot,
-    getServerThemeSnapshot
+    getServerThemeSnapshot,
   );
 
   const toggleTheme = () => {
@@ -156,14 +158,18 @@ export const SidebarFooter = React.forwardRef<
             suppressHydrationWarning
             className={cn(
               "w-3.5 h-3.5 transition-all duration-300 group-hover:rotate-45",
-              theme === "light" ? "text-[var(--color-brand-primary)] scale-110" : "opacity-40"
+              theme === "light"
+                ? "text-[var(--color-brand-primary)] scale-110"
+                : "opacity-40",
             )}
           />
           <Moon
             suppressHydrationWarning
             className={cn(
               "w-3.5 h-3.5 transition-all duration-300 group-hover:-rotate-12",
-              theme === "dark" ? "text-[var(--color-brand-primary)] scale-110" : "opacity-40"
+              theme === "dark"
+                ? "text-[var(--color-brand-primary)] scale-110"
+                : "opacity-40",
             )}
           />
         </button>
