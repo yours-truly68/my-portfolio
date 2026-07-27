@@ -17,6 +17,7 @@ export interface JournalEntry {
 
   // Shared
   tags?: string[];
+  published?: string;
 }
 
 export const journalEntries: JournalEntry[] = [
@@ -27,7 +28,7 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7478122985254477824",
     platform: "linkedin",
-    title: "LinkedIn Post 01",
+    title: "The Buzz around Harness & Harness Engineering",
     featured: true,
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7478122985254477824",
@@ -36,7 +37,7 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7478627499766153216",
     platform: "linkedin",
-    title: "LinkedIn Post 02",
+    title: "HTTP QUERY: The http method that could change how we use APIs",
     featured: true,
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7478627499766153216",
@@ -45,7 +46,7 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7479430275907829760",
     platform: "linkedin",
-    title: "LinkedIn Post 03",
+    title: "The Magic behind file recognition and file handling: Magic Bytes",
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7479430275907829760?collapsed=1",
   },
@@ -53,7 +54,8 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7479788706715934720",
     platform: "linkedin",
-    title: "LinkedIn Post 04",
+    title:
+      "Introductoin to Write-Ahead Log(WAL) and how data is actually saved",
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7479788706715934720",
   },
@@ -61,7 +63,8 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7481678035956723712",
     platform: "linkedin",
-    title: "LinkedIn Post 05",
+    title:
+      "How did LLM context window explode from 4k to over a million tokens?",
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7481678035956723712",
   },
@@ -69,7 +72,7 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7483121335804633088",
     platform: "linkedin",
-    title: "LinkedIn Post 06",
+    title: "Agentic Systems and its engineering challenges: Background Tasks",
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7483121335804633088",
   },
@@ -77,7 +80,7 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7483178604147777536",
     platform: "linkedin",
-    title: "LinkedIn Post 07",
+    title: "Custom AI Harness and coding agent FORGE",
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7483178604147777536",
   },
@@ -85,7 +88,7 @@ export const journalEntries: JournalEntry[] = [
   {
     id: "7483921145466040322",
     platform: "linkedin",
-    title: "LinkedIn Post 08",
+    title: "Model Context Protocol: Evolving LLM Inputs",
     embedUrl:
       "https://www.linkedin.com/embed/feed/update/urn:li:share:7483921145466040322",
   },
@@ -130,3 +133,14 @@ export const journalEntries: JournalEntry[] = [
     tags: ["Chemistry", "Science", "Education"],
   },
 ];
+
+// Derived helper collections from journalEntries (single source of truth)
+export const linkedInPosts = journalEntries.filter(
+  (entry) => entry.platform === "linkedin",
+);
+
+export const mediumPosts = journalEntries.filter(
+  (entry) => entry.platform === "medium",
+);
+
+export const featuredPosts = journalEntries.filter((entry) => entry.featured);

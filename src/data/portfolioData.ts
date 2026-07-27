@@ -9,6 +9,8 @@ import KanDoPreview from "@/assets/KandDo.gif";
 import GalePreview from "@/assets/Gale-chatbot.png";
 import PurplexityPreview from "@/assets/purplexity.png";
 import JomatoesPreview from "@/assets/Jomatoes.png";
+import { journalEntries } from "@/content/journal/journalData";
+
 
 export interface PersonalInfo {
   name: string;
@@ -353,42 +355,27 @@ export const educationData: EducationItem[] = [
 
 export interface JournalArticleItem {
   id: string;
-  date: string;
-  readTime: string;
+  date?: string;
+  readTime?: string;
   title: string;
-  summary: string;
+  summary?: string;
   isDraft?: boolean;
+  url?: string;
+  embedUrl?: string;
+  platform?: string;
 }
 
-export const journalArticles: JournalArticleItem[] = [
-  {
-    id: "event-driven-ai-agents",
-    date: "MAY 18, 2025",
-    readTime: "8 MIN READ",
-    title: "Designing Reliable AI Agents with Event-Driven Systems",
-    summary:
-      "Architectural insights on durable checkpointing, execution state recovery, and decoupled agent execution harnesses.",
-    isDraft: true,
-  },
-  {
-    id: "rag-at-scale",
-    date: "MAY 08, 2025",
-    readTime: "12 MIN READ",
-    title: "RAG at Scale: Lessons from Building Purplexity",
-    summary:
-      "Optimizing vector search retrieval latency, contextual prompt augmentation, and streaming inference pipelines.",
-    isDraft: true,
-  },
-  {
-    id: "building-kando",
-    date: "APR 21, 2025",
-    readTime: "6 MIN READ",
-    title: "Building KANDo: A Modern Kanban for Engineering Teams",
-    summary:
-      "Normalizing PostgreSQL schemas with SQLAlchemy, implementing RBAC authorization, and state management with Zustand.",
-    isDraft: true,
-  },
-];
+export const journalArticles: JournalArticleItem[] = journalEntries.map((entry) => ({
+  id: entry.id,
+  date: entry.published || entry.platform.toUpperCase(),
+  readTime: entry.readTime || (entry.platform === "linkedin" ? "LinkedIn Post" : "5 min read"),
+  title: entry.title,
+  summary: entry.summary || "",
+  url: entry.url,
+  embedUrl: entry.embedUrl,
+  platform: entry.platform,
+}));
+
 
 export interface PrincipleItem {
   id: string;

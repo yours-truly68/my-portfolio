@@ -34,6 +34,8 @@ export const LinkedInEmbed = React.forwardRef<HTMLDivElement, LinkedInEmbedProps
   ({ className, entry, ...props }, ref) => {
     const [loaded, setLoaded] = React.useState(false);
 
+    const postUrl = entry.url || (entry.embedUrl ? entry.embedUrl.replace("/embed/feed/update/", "/feed/update/") : undefined);
+
     return (
       <div
         ref={ref}
@@ -50,13 +52,13 @@ export const LinkedInEmbed = React.forwardRef<HTMLDivElement, LinkedInEmbedProps
               <LinkedinIcon />
             </div>
             <span className="text-[0.65rem] font-bold uppercase tracking-wider text-slate-500 dark:text-white/50">
-              LinkedIn Post • {entry.published}
+              {entry.published ? `LinkedIn Post • ${entry.published}` : "LinkedIn Post"}
             </span>
           </div>
 
-          {entry.url && (
+          {postUrl && (
             <a
-              href={entry.url}
+              href={postUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-semibold text-[var(--color-brand-primary)] hover:underline flex items-center gap-1"
@@ -72,13 +74,15 @@ export const LinkedInEmbed = React.forwardRef<HTMLDivElement, LinkedInEmbedProps
           <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
             {entry.title}
           </h3>
-          <div className="flex flex-wrap gap-1.5">
-            {entry.tags.map((tag) => (
-              <Pill key={tag} variant="default" size="sm" className="text-[0.625rem] px-2 py-0.5">
-                {tag}
-              </Pill>
-            ))}
-          </div>
+          {entry.tags && entry.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {entry.tags.map((tag) => (
+                <Pill key={tag} variant="default" size="sm" className="text-[0.625rem] px-2 py-0.5">
+                  {tag}
+                </Pill>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Responsive Lazy-Loaded Iframe Container */}

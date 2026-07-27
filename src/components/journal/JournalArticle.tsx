@@ -13,16 +13,17 @@ export interface JournalArticleProps extends React.HTMLAttributes<HTMLDivElement
 export const JournalArticle = React.forwardRef<HTMLDivElement, JournalArticleProps>(
   ({ className, article, ...props }, ref) => {
     const title = article.title;
-    const date = "published" in article ? article.published : article.date;
-    const readTime = article.readTime;
+    const date = ("published" in article && article.published) || ("date" in article && article.date) || article.platform?.toUpperCase() || "ARTICLE";
+    const readTime = article.readTime || (article.platform === "linkedin" ? "LinkedIn Post" : "Article");
     const isDraft = "isDraft" in article ? article.isDraft : false;
+    const targetUrl = article.url || article.embedUrl;
 
     return (
       <div
         ref={ref}
         onClick={() => {
-          if ("url" in article && article.url) {
-            window.open(article.url, "_blank");
+          if (targetUrl) {
+            window.open(targetUrl, "_blank");
           } else {
             window.location.href = "/journal";
           }

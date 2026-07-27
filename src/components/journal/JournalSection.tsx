@@ -6,13 +6,15 @@ import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { JournalArticle } from "./JournalArticle";
-import { journalArticles } from "@/data/portfolioData";
+import { journalEntries, featuredPosts } from "@/content/journal/journalData";
 import { cn } from "@/lib/utils";
 
 export type JournalSectionProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const JournalSection = React.forwardRef<HTMLDivElement, JournalSectionProps>(
   ({ className, ...props }, ref) => {
+    const displayEntries = featuredPosts.length > 0 ? featuredPosts.slice(0, 4) : journalEntries.slice(0, 4);
+
     return (
       <div ref={ref} className={cn("flex flex-col gap-8 select-none", className)} {...props}>
         {/* Miniature Hero Style Heading */}
@@ -41,7 +43,7 @@ export const JournalSection = React.forwardRef<HTMLDivElement, JournalSectionPro
 
         {/* Magazine Index Article List */}
         <div className="flex flex-col divide-y divide-black/[0.04] dark:divide-white/[0.04] border-t border-black/[0.04] dark:border-white/[0.04] pt-1">
-          {journalArticles.slice(0, 3).map((article) => (
+          {displayEntries.map((article) => (
             <JournalArticle key={article.id} article={article} />
           ))}
         </div>

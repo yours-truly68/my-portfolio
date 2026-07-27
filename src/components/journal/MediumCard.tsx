@@ -29,13 +29,15 @@ export const MediumCard = React.forwardRef<HTMLDivElement, MediumCardProps>(
                 <BookOpen className="w-4 h-4" />
               </div>
               <span className="text-[0.65rem] font-bold uppercase tracking-wider text-slate-500 dark:text-white/50">
-                Medium Article • {entry.published}
+                {entry.published ? `Medium Article • ${entry.published}` : "Medium Article"}
               </span>
             </div>
 
-            <span className="text-[0.65rem] font-medium text-slate-500 dark:text-white/50">
-              {entry.readTime}
-            </span>
+            {entry.readTime && (
+              <span className="text-[0.65rem] font-medium text-slate-500 dark:text-white/50">
+                {entry.readTime}
+              </span>
+            )}
           </div>
 
           {/* Title & Summary */}
@@ -43,19 +45,23 @@ export const MediumCard = React.forwardRef<HTMLDivElement, MediumCardProps>(
             <h3 className="text-xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight group-hover:text-[var(--color-brand-primary)] transition-colors duration-200">
               {entry.title}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-white/70 leading-relaxed line-clamp-3 font-normal">
-              {entry.summary}
-            </p>
+            {entry.summary && (
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-white/70 leading-relaxed line-clamp-3 font-normal">
+                {entry.summary}
+              </p>
+            )}
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 pt-2">
-            {entry.tags.map((tag) => (
-              <Pill key={tag} variant="default" size="sm" className="text-[0.625rem] px-2.5 py-0.5">
-                {tag}
-              </Pill>
-            ))}
-          </div>
+          {entry.tags && entry.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 pt-2">
+              {entry.tags.map((tag) => (
+                <Pill key={tag} variant="default" size="sm" className="text-[0.625rem] px-2.5 py-0.5">
+                  {tag}
+                </Pill>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* CTA Footer */}

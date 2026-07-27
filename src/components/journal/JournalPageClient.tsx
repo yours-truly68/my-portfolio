@@ -25,7 +25,7 @@ export function JournalPageClient({ initialEntries, categories }: JournalPageCli
     if (selectedPlatform && entry.platform !== selectedPlatform) {
       return false;
     }
-    if (selectedCategory && !entry.tags.includes(selectedCategory)) {
+    if (selectedCategory && (!entry.tags || !entry.tags.includes(selectedCategory))) {
       return false;
     }
     return true;

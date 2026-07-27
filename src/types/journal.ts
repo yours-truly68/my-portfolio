@@ -1,17 +1,24 @@
-export type JournalPlatform = "linkedin" | "medium" | "hashnode" | "devto" | "article";
+export type JournalPlatform = "linkedin" | "medium";
 
 export interface JournalEntry {
   id: string;
-  slug: string;
-  title: string;
   platform: JournalPlatform;
-  published: string;
-  featured: boolean;
-  summary: string;
-  tags: string[];
-  readTime: string;
+  title: string;
+  featured?: boolean;
+
+  // LinkedIn
   embedUrl?: string;
+
+  // Medium
   url?: string;
+  summary?: string;
+  readTime?: string;
+
+  // Shared / Metadata
+  tags?: string[];
+  published?: string;
+  slug?: string;
   cover?: string;
   content?: string;
 }
+
