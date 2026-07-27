@@ -4,6 +4,7 @@ import * as React from "react";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PrincipleCard } from "./PrincipleCard";
+import { QuoteSection } from "@/components/quote";
 import { principlesData } from "@/data/portfolioData";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,9 @@ export const PrinciplesSection = React.forwardRef<HTMLElement, PrinciplesSection
         className={cn("w-full select-none scroll-mt-24", className)}
         {...props}
       >
+        {/* Quote Section Right Above Principles I Follow */}
+        <QuoteSection />
+
         {/* Desktop 30/70 Editorial Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column (~30% Width - 4 of 12 columns) */}
