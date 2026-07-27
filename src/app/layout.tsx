@@ -39,8 +39,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Full Stack AI Engineer",
-  description: "Building intelligent systems that scale.",
+  title: {
+    default: "Mohammad Razim — Full-Stack AI Engineer",
+    template: "%s — Mohammad Razim",
+  },
+  description: "Building intelligent systems that scale. Full-Stack AI Engineer, UI/UX Architect & Developer.",
+  icons: {
+    icon: [
+      { url: "/Logo Black.png", media: "(prefers-color-scheme: light)" },
+      { url: "/Logo White.png", media: "(prefers-color-scheme: dark)" },
+    ],
+    shortcut: "/Logo Black.png",
+    apple: "/Logo Black.png",
+  },
 };
 
 export default function RootLayout({
@@ -51,7 +62,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="dark"
+      className={`dark ${plusJakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

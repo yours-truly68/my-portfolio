@@ -51,13 +51,23 @@ export const SidebarFooter = React.forwardRef<
   HTMLDivElement,
   SidebarFooterProps
 >(({ className, ...props }, ref) => {
-  const [theme, setTheme] = React.useState<"light" | "dark">("light");
+  const [theme, setTheme] = React.useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("portfolio-theme") as "light" | "dark" | null;
+      return savedTheme || "dark";
+    }
+    return "dark";
+  });
+
+  React.useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
-    document.documentElement.classList.toggle("dark", nextTheme === "dark");
-    document.documentElement.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("portfolio-theme", nextTheme);
   };
 
   return (
