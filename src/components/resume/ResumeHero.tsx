@@ -88,15 +88,20 @@ export const ResumeHero = React.forwardRef<HTMLDivElement, ResumeHeroProps>(
         <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-3">
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => window.open("/Mohammad_Razim_Professional_CV.pdf", "_blank")}
-              className="rounded-full text-xs font-bold px-4 py-2 hover:scale-[1.02] transition-transform"
+            <a
+              href="/Mohammad_Razim_Professional_CV.pdf"
+              download="Mohammad_Razim_Professional_CV.pdf"
+              className="inline-flex"
             >
-              <Download className="w-3.5 h-3.5 mr-1.5" />
-              Download PDF
-            </Button>
+              <Button
+                variant="primary"
+                size="sm"
+                className="rounded-full text-xs font-bold px-4 py-2 hover:scale-[1.02] transition-transform"
+              >
+                <Download className="w-3.5 h-3.5 mr-1.5" />
+                Download PDF
+              </Button>
+            </a>
 
             <Button
               variant="secondary"

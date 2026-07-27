@@ -103,8 +103,7 @@ export const ResumeContact = React.forwardRef<HTMLDivElement, ResumeContactProps
 
           <a
             href="/Mohammad_Razim_Professional_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Mohammad_Razim_Professional_CV.pdf"
             className="flex items-center gap-1.5 hover:text-[var(--color-brand-primary)] transition-colors"
           >
             <Download className="w-4 h-4 text-[var(--color-brand-primary)]" />
