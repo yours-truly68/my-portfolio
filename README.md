@@ -1,3 +1,5 @@
+![alt text](image-1.png)
+
 # Mohammad Razim — Portfolio
 
 > An editorial portfolio built to showcase engineering, design, writing, and the journey of building software.
