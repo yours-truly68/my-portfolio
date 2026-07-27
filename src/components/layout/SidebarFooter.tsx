@@ -51,9 +51,9 @@ const themeListeners = new Set<() => void>();
 
 function getThemeSnapshot(): "light" | "dark" {
   if (typeof window !== "undefined") {
-    return (
-      (localStorage.getItem("portfolio-theme") as "light" | "dark") || "dark"
-    );
+    const saved = localStorage.getItem("portfolio-theme") as "light" | "dark";
+    if (saved) return saved;
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
   }
   return "dark";
 }
@@ -67,10 +67,15 @@ function subscribeTheme(callback: () => void) {
   return () => themeListeners.delete(callback);
 }
 
-function setThemeState(nextTheme: "light" | "dark") {
+export function setThemeState(nextTheme: "light" | "dark") {
   localStorage.setItem("portfolio-theme", nextTheme);
-  document.documentElement.classList.toggle("dark", nextTheme === "dark");
-  document.documentElement.setAttribute("data-theme", nextTheme);
+  if (nextTheme === "dark") {
+    document.documentElement.classList.add("dark");
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
+  }
   themeListeners.forEach((listener) => listener());
 }
 
@@ -81,8 +86,15 @@ export const SidebarFooter = React.forwardRef<
   const theme = React.useSyncExternalStore(
     subscribeTheme,
     getThemeSnapshot,
-    getServerThemeSnapshot,
+    getServerThemeSnapshot
   );
+
+  React.useEffect(() => {
+    const saved = localStorage.getItem("portfolio-theme") as "light" | "dark";
+    if (saved) {
+      setThemeState(saved);
+    }
+  }, []);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
@@ -94,7 +106,7 @@ export const SidebarFooter = React.forwardRef<
       ref={ref}
       className={cn(
         "flex flex-col gap-4 px-4 py-6 mt-auto border-t border-[var(--color-border-light)] select-none",
-        className,
+        className
       )}
       {...props}
     >
@@ -117,7 +129,7 @@ export const SidebarFooter = React.forwardRef<
           onClick={() =>
             window.open(
               "https://www.linkedin.com/in/mohammadrazim880/",
-              "_blank",
+              "_blank"
             )
           }
           className="transition-transform duration-200 hover:scale-110 active:scale-95"
@@ -160,7 +172,7 @@ export const SidebarFooter = React.forwardRef<
               "w-3.5 h-3.5 transition-all duration-300 group-hover:rotate-45",
               theme === "light"
                 ? "text-[var(--color-brand-primary)] scale-110"
-                : "opacity-40",
+                : "opacity-40"
             )}
           />
           <Moon
@@ -169,7 +181,7 @@ export const SidebarFooter = React.forwardRef<
               "w-3.5 h-3.5 transition-all duration-300 group-hover:-rotate-12",
               theme === "dark"
                 ? "text-[var(--color-brand-primary)] scale-110"
-                : "opacity-40",
+                : "opacity-40"
             )}
           />
         </button>

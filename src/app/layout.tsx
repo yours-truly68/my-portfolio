@@ -43,7 +43,8 @@ export const metadata: Metadata = {
     default: "Mohammad Razim — Full-Stack AI Engineer",
     template: "%s — Mohammad Razim",
   },
-  description: "Building intelligent systems that scale. Full-Stack AI Engineer, UI/UX Architect & Developer.",
+  description:
+    "Building intelligent systems that scale. Full-Stack AI Engineer, UI/UX Architect & Developer.",
   icons: {
     icon: [
       { url: "/Logo Black.png", media: "(prefers-color-scheme: light)" },
@@ -64,7 +65,29 @@ export default function RootLayout({
       lang="en"
       data-theme="dark"
       className={`dark ${plusJakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var t = localStorage.getItem('portfolio-theme');
+                  var isDark = t ? t === 'dark' : true;
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
