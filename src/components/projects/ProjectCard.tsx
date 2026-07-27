@@ -4,6 +4,8 @@ import * as React from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectItem } from "@/data/portfolioData";
+import { useProjectPreview } from "@/hooks/useProjectPreview";
+import { ProjectPreviewWindow } from "./ProjectPreviewWindow";
 import { cn } from "@/lib/utils";
 
 export interface ProjectCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -13,6 +15,17 @@ export interface ProjectCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
   ({ className, project, isLarge = false, ...props }, ref) => {
+    const {
+      isOpen,
+      targetRect,
+      handleMouseEnterCard,
+      handleMouseLeaveCard,
+      handleMouseEnterPreview,
+      handleMouseLeavePreview,
+      handleFocus,
+      handleBlur,
+    } = useProjectPreview();
+
     // Exact theme mapping matching source of truth image for both Dark and Light modes
     const themeMap: Record<
       string,
@@ -101,90 +114,45 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         : "FOOD TECH";
 
     return (
-      <div
-        ref={ref}
-        className={cn(
-          "group relative flex flex-col justify-between rounded-[24px] p-6 sm:p-7 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl select-none overflow-hidden min-h-[360px] sm:min-h-[400px]",
-          theme.cardBg,
-          className
-        )}
-        {...props}
-      >
-        {/* Top Action Header: Number + GitHub Arrow Button */}
-        <div className="flex items-center justify-between z-20">
-          <span className="text-[0.65rem] font-bold font-mono tracking-widest opacity-40">
-            {project.number}
-          </span>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${project.name} on GitHub`}
-            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-xs"
-          >
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:rotate-[-45deg]" />
-          </a>
-        </div>
-
-        {/* Card Body Split: Left Typography / Right Source-of-Truth Artwork */}
-        {isLarge ? (
-          /* Hero Card Layout (Forge & KANDo) */
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center z-20 h-full pt-3">
-            <div className="sm:col-span-5 flex flex-col gap-3">
-              <h3
-                className={cn(
-                  "text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight",
-                  theme.textPrimary
-                )}
-              >
-                {project.name}
-              </h3>
-              <p
-                className={cn(
-                  "text-xs sm:text-sm leading-relaxed font-normal line-clamp-3 max-w-sm",
-                  theme.textMuted
-                )}
-              >
-                {project.description}
-              </p>
-              <div className="pt-2">
-                <span
-                  className={cn(
-                    "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[0.625rem] font-bold font-mono uppercase tracking-wider",
-                    theme.badgeBg,
-                    theme.badgeText
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "w-1.5 h-1.5 rounded-full animate-pulse",
-                      theme.badgeDot
-                    )}
-                  />
-                  {badgeLabel}
-                </span>
-              </div>
-            </div>
-
-            {/* Exact Artwork Preview from Source of Truth */}
-            <div className="sm:col-span-7 relative flex items-center justify-end h-[220px] sm:h-[260px] w-full transition-transform duration-500 ease-out group-hover:scale-105">
-              <Image
-                src={theme.imgPath}
-                alt={`${project.name} Product Interface`}
-                fill
-                priority
-                className="object-contain object-right pointer-events-none drop-shadow-2xl"
-              />
-            </div>
+      <>
+        <div
+          ref={ref}
+          onMouseEnter={handleMouseEnterCard}
+          onMouseLeave={handleMouseLeaveCard}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          tabIndex={0}
+          className={cn(
+            "group relative flex flex-col justify-between rounded-[24px] p-6 sm:p-7 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl select-none overflow-hidden min-h-[360px] sm:min-h-[400px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] cursor-pointer",
+            theme.cardBg,
+            className
+          )}
+          {...props}
+        >
+          {/* Top Action Header: Number + GitHub Arrow Button */}
+          <div className="flex items-center justify-between z-20">
+            <span className="text-[0.65rem] font-bold font-mono tracking-widest opacity-40">
+              {project.number}
+            </span>
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.name} on GitHub`}
+              className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-xs"
+            >
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:rotate-[-45deg]" />
+            </a>
           </div>
-        ) : (
-          /* Supporting Card Layout (Gale, Purplexity, Zomatoes) */
-          <div className="flex flex-col justify-between z-20 h-full gap-3 pt-3">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex flex-col gap-1.5 max-w-[55%]">
+
+          {/* Card Body Split: Left Typography / Right Source-of-Truth Artwork */}
+          {isLarge ? (
+            /* Hero Card Layout (Forge & KANDo) */
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center z-20 h-full pt-3">
+              <div className="sm:col-span-5 flex flex-col gap-3">
                 <h3
                   className={cn(
-                    "text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight",
+                    "text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight",
                     theme.textPrimary
                   )}
                 >
@@ -192,7 +160,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
                 </h3>
                 <p
                   className={cn(
-                    "text-xs leading-relaxed font-normal line-clamp-3",
+                    "text-xs sm:text-sm leading-relaxed font-normal line-clamp-3 max-w-sm",
                     theme.textMuted
                   )}
                 >
@@ -218,7 +186,7 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
               </div>
 
               {/* Exact Artwork Preview from Source of Truth */}
-              <div className="relative w-[45%] h-[180px] sm:h-[210px] transition-transform duration-500 ease-out group-hover:scale-105">
+              <div className="sm:col-span-7 relative flex items-center justify-end h-[220px] sm:h-[260px] w-full transition-transform duration-500 ease-out group-hover:scale-105">
                 <Image
                   src={theme.imgPath}
                   alt={`${project.name} Product Interface`}
@@ -228,9 +196,70 @@ export const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
                 />
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          ) : (
+            /* Supporting Card Layout (Gale, Purplexity, Zomatoes) */
+            <div className="flex flex-col justify-between z-20 h-full gap-3 pt-3">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex flex-col gap-1.5 max-w-[55%]">
+                  <h3
+                    className={cn(
+                      "text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight",
+                      theme.textPrimary
+                    )}
+                  >
+                    {project.name}
+                  </h3>
+                  <p
+                    className={cn(
+                      "text-xs leading-relaxed font-normal line-clamp-3",
+                      theme.textMuted
+                    )}
+                  >
+                    {project.description}
+                  </p>
+                  <div className="pt-2">
+                    <span
+                      className={cn(
+                        "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[0.625rem] font-bold font-mono uppercase tracking-wider",
+                        theme.badgeBg,
+                        theme.badgeText
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "w-1.5 h-1.5 rounded-full animate-pulse",
+                          theme.badgeDot
+                        )}
+                      />
+                      {badgeLabel}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Exact Artwork Preview from Source of Truth */}
+                <div className="relative w-[45%] h-[180px] sm:h-[210px] transition-transform duration-500 ease-out group-hover:scale-105">
+                  <Image
+                    src={theme.imgPath}
+                    alt={`${project.name} Product Interface`}
+                    fill
+                    priority
+                    className="object-contain object-right pointer-events-none drop-shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Floating macOS Live Product Preview Panel Window */}
+        <ProjectPreviewWindow
+          project={project}
+          isOpen={isOpen}
+          targetRect={targetRect}
+          onMouseEnter={handleMouseEnterPreview}
+          onMouseLeave={handleMouseLeavePreview}
+        />
+      </>
     );
   }
 );

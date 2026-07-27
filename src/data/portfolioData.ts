@@ -3,6 +3,13 @@
    Source of Truth: src/assets/Mohammad_Razim_Professional_CV.pdf & Curated Career Journey
    ========================================================================== */
 
+import { StaticImageData } from "next/image";
+import ForgePreview from "@/assets/Forge.png";
+import KanDoPreview from "@/assets/KandDo.gif";
+import GalePreview from "@/assets/Gale-chatbot.png";
+import PurplexityPreview from "@/assets/purplexity.png";
+import JomatoesPreview from "@/assets/Jomatoes.png";
+
 export interface PersonalInfo {
   name: string;
   title: string;
@@ -44,6 +51,9 @@ export interface ProjectItem {
   highlights: string[];
   status?: string;
   darkCard?: boolean;
+  previewImage?: string;
+  previewGif?: string;
+  preview?: StaticImageData | string;
 }
 
 export interface EducationItem {
@@ -207,6 +217,9 @@ export const projectsData: ProjectItem[] = [
     techStack: ["Python", "Inngest", "FastAPI", "CLI", "Terminal UI"],
     githubUrl: "https://github.com/yours-truly68/forge",
     darkCard: true,
+    previewImage: "/forge-preview.png",
+    previewGif: "/forge-preview.gif",
+    preview: ForgePreview,
     highlights: [
       "Designed and built a decoupled event-driven execution harness orchestrating autonomous ReAct software engineering agents.",
       "Developed a terminal-first developer experience supporting interactive command execution, session management, and runtime model switching through CLI commands.",
@@ -231,6 +244,9 @@ export const projectsData: ProjectItem[] = [
     ],
     githubUrl: "https://github.com/yours-truly68/project-management-system",
     status: "In Progress",
+    previewImage: "/kando-preview.png",
+    previewGif: "/kando-preview.gif",
+    preview: KanDoPreview,
     highlights: [
       "Built a production-grade project management platform supporting collaborative workspaces, Kanban boards, task management, and role-based access control.",
       "Designed a normalized PostgreSQL data model using SQLAlchemy to support workspaces, projects, tasks, and comments.",
@@ -255,6 +271,9 @@ export const projectsData: ProjectItem[] = [
     ],
     githubUrl: "https://github.com/yours-truly68/G-bot",
     darkCard: true,
+    previewImage: "/gale-preview.png",
+    previewGif: "/gale-preview.gif",
+    preview: GalePreview,
     highlights: [
       "Architected and developed a Retrieval-Augmented Generation (RAG) chatbot grounded on the Gale Encyclopedia knowledge base.",
       "Engineered an end-to-end ingestion pipeline to preprocess, chunk, embed, and index encyclopedia documents into Pinecone.",
@@ -272,6 +291,9 @@ export const projectsData: ProjectItem[] = [
     techStack: ["Next.js", "Bun", "Supabase", "PostgreSQL", "Groq", "Qwen"],
     githubUrl: "https://github.com/yours-truly68/purplexity",
     darkCard: true,
+    previewImage: "/purplexity-preview.png",
+    previewGif: "/purplexity-preview.gif",
+    preview: PurplexityPreview,
     highlights: [
       "Architected an AI-powered search engine with streaming LLM responses.",
       "Integrated Tavily for contextual web retrieval.",
@@ -298,6 +320,9 @@ export const projectsData: ProjectItem[] = [
     ],
     githubUrl: "https://github.com/yours-truly68/zomato-clone",
     darkCard: true,
+    previewImage: "/zomatoes-preview.png",
+    previewGif: "/zomatoes-preview.gif",
+    preview: JomatoesPreview,
     highlights: [
       "Structured backend using Modular Monolith principles inspired by Microservices for clean domain isolation.",
       "Implemented RabbitMQ to asynchronously coordinate order processing, restaurant notifications, and delivery workflows.",
