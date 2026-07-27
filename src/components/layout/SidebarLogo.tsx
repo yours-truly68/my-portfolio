@@ -23,16 +23,16 @@ export const SidebarLogo = React.forwardRef<HTMLDivElement, SidebarLogoProps>(
           }}
           className="inline-flex items-center hover:opacity-90 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] rounded-lg select-none"
         >
-          {/* Logo Black for Light mode (Scaled 2x) */}
+          {/* Logo Black for Light mode (Pitch Black in Light Mode) */}
           <Image
             src="/Logo Black.png"
             alt="Mohammad Razim Logo"
             width={160}
             height={64}
             priority
-            className="dark:hidden h-12 sm:h-14 w-auto object-contain"
+            className="dark:hidden h-12 sm:h-14 w-auto object-contain brightness-0"
           />
-          {/* Logo White for Dark mode (Scaled 2x) */}
+          {/* Logo White for Dark mode (Pure White in Dark Mode) */}
           <Image
             src="/Logo White.png"
             alt="Mohammad Razim Logo"

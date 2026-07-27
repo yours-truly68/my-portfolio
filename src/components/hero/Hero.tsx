@@ -63,7 +63,7 @@ export const Hero = React.forwardRef<HTMLElement, HeroProps>(
             className="lg:col-span-5 flex flex-col gap-6 justify-center z-10"
           >
             <motion.div variants={itemVariants}>
-              <HeroBadge label="FULL STACK AI ENGINEER" />
+              <HeroBadge label="CURIOUS & CREATIVE" />
             </motion.div>
 
             <motion.div variants={itemVariants}>

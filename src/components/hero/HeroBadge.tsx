@@ -7,7 +7,7 @@ export interface HeroBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const HeroBadge = React.forwardRef<HTMLDivElement, HeroBadgeProps>(
-  ({ className, label = "FULL STACK AI ENGINEER", ...props }, ref) => {
+  ({ className, label = "CURIOUS & CREATIVE", ...props }, ref) => {
     return (
       <div ref={ref} className={cn("inline-flex items-center", className)} {...props}>
         <Badge variant="brand" size="md" dot className="px-4 py-1.5 text-xs font-bold tracking-widest uppercase">

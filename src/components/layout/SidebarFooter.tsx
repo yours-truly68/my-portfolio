@@ -47,27 +47,44 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const themeListeners = new Set<() => void>();
+
+function getThemeSnapshot(): "light" | "dark" {
+  if (typeof window !== "undefined") {
+    return (localStorage.getItem("portfolio-theme") as "light" | "dark") || "dark";
+  }
+  return "dark";
+}
+
+function getServerThemeSnapshot(): "light" | "dark" {
+  return "dark";
+}
+
+function subscribeTheme(callback: () => void) {
+  themeListeners.add(callback);
+  return () => themeListeners.delete(callback);
+}
+
+function setThemeState(nextTheme: "light" | "dark") {
+  localStorage.setItem("portfolio-theme", nextTheme);
+  document.documentElement.classList.toggle("dark", nextTheme === "dark");
+  document.documentElement.setAttribute("data-theme", nextTheme);
+  themeListeners.forEach((listener) => listener());
+}
+
 export const SidebarFooter = React.forwardRef<
   HTMLDivElement,
   SidebarFooterProps
 >(({ className, ...props }, ref) => {
-  const [theme, setTheme] = React.useState<"light" | "dark">(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("portfolio-theme") as "light" | "dark" | null;
-      return savedTheme || "dark";
-    }
-    return "dark";
-  });
-
-  React.useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  const theme = React.useSyncExternalStore(
+    subscribeTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot
+  );
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
-    localStorage.setItem("portfolio-theme", nextTheme);
+    setThemeState(nextTheme);
   };
 
   return (
@@ -132,15 +149,18 @@ export const SidebarFooter = React.forwardRef<
         <button
           onClick={toggleTheme}
           aria-label="Toggle Theme"
+          suppressHydrationWarning
           className="group inline-flex items-center gap-1.5 p-1.5 rounded-full bg-[var(--color-bg-card-subtle)] border border-[var(--color-border-light)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-all duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)]"
         >
           <Sun
+            suppressHydrationWarning
             className={cn(
               "w-3.5 h-3.5 transition-all duration-300 group-hover:rotate-45",
               theme === "light" ? "text-[var(--color-brand-primary)] scale-110" : "opacity-40"
             )}
           />
           <Moon
+            suppressHydrationWarning
             className={cn(
               "w-3.5 h-3.5 transition-all duration-300 group-hover:-rotate-12",
               theme === "dark" ? "text-[var(--color-brand-primary)] scale-110" : "opacity-40"

@@ -239,10 +239,10 @@ export const projectsData: ProjectItem[] = [
     ],
   },
   {
-    id: "g-bot",
+    id: "gale",
     number: "03",
-    name: "Gale Chatbot",
-    subtitle: "Gale Encyclopedia RAG Chatbot (G-bot)",
+    name: "Gale",
+    subtitle: "Gale Encyclopedia RAG Chatbot",
     description:
       "RAG-powered medical & encyclopedia assistant for intelligent domain-specific information retrieval.",
     techStack: [
@@ -279,12 +279,12 @@ export const projectsData: ProjectItem[] = [
     ],
   },
   {
-    id: "jomatoes",
+    id: "zomatoes",
     number: "05",
-    name: "Jomatoes",
-    subtitle: "Distributed Food Ordering Platform",
+    name: "Zomatoes",
+    subtitle: "Production-Oriented Online Food Delivery Platform",
     description:
-      "Event-driven food ordering platform with RabbitMQ, WebSockets real-time sync, and Razorpay payments.",
+      "Full-stack food delivery platform demonstrating event-driven RabbitMQ messaging, WebSockets real-time sync, and Razorpay payment processing.",
     techStack: [
       "React",
       "TypeScript",
@@ -293,13 +293,17 @@ export const projectsData: ProjectItem[] = [
       "MongoDB",
       "RabbitMQ",
       "WebSockets",
+      "Razorpay",
+      "Docker",
     ],
     githubUrl: "https://github.com/yours-truly68/zomato-clone",
+    darkCard: true,
     highlights: [
-      "Architected a distributed food ordering platform supporting Customers, Restaurant Partners, and Delivery Riders.",
-      "Designed an event-driven backend using RabbitMQ to asynchronously coordinate order processing, inventory updates, and delivery workflows.",
-      "Implemented real-time order lifecycle synchronization using WebSockets.",
-      "Integrated Razorpay for secure payment processing with server-side payment verification.",
+      "Structured backend using Modular Monolith principles inspired by Microservices for clean domain isolation.",
+      "Implemented RabbitMQ to asynchronously coordinate order processing, restaurant notifications, and delivery workflows.",
+      "Developed WebSocket communication for live delivery tracking and instant restaurant order updates.",
+      "Integrated Razorpay payment gateway with server-side transaction verification for secure checkout.",
+      "Containerized deployment using Docker for production-ready engineering workflows.",
     ],
   },
 ];
