@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useSplash } from "@/components/ui/SplashScreen";
 import { cn } from "@/lib/utils";
 
@@ -21,26 +20,15 @@ export const SidebarLogo = React.forwardRef<HTMLDivElement, SidebarLogoProps>(
           onClick={() => {
             triggerSplash();
           }}
-          className="inline-flex items-center hover:opacity-90 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] rounded-lg select-none"
+          className="inline-flex items-center gap-1 hover:opacity-90 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] rounded-lg select-none group"
         >
-          {/* Logo Black for Light mode (Pitch Black in Light Mode) */}
-          <Image
-            src="/Logo Black.png"
-            alt="Mohammad Razim Logo"
-            width={160}
-            height={64}
-            priority
-            className="dark:hidden h-12 sm:h-14 w-auto object-contain brightness-0"
-          />
-          {/* Logo White for Dark mode (Pure White in Dark Mode) */}
-          <Image
-            src="/Logo White.png"
-            alt="Mohammad Razim Logo"
-            width={160}
-            height={64}
-            priority
-            className="hidden dark:block h-12 sm:h-14 w-auto object-contain"
-          />
+          {/* MR Text in Dynamic Theme Color (Pitch Black in Light Mode, Pure White in Dark Mode) */}
+          <span className="text-3xl sm:text-4xl font-extrabold tracking-tighter text-[var(--color-text-primary)] font-sans transition-colors duration-200">
+            MR
+          </span>
+
+          {/* Signature Purple Dot */}
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2px] bg-[#7B61FF] inline-block mb-1 group-hover:scale-110 transition-transform duration-200" />
         </Link>
       </div>
     );

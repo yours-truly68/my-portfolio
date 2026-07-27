@@ -4,7 +4,6 @@ import * as React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-import LeonardoDark from "@/assets/leonardo_negative_preview.png";
 export type QuoteSectionProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const QuoteSection = React.forwardRef<HTMLDivElement, QuoteSectionProps>(
