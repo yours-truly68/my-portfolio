@@ -1,4 +1,4 @@
-![alt text](image-1.png)
+![Mohammad Razim Portfolio Hero Page](image-1.png)
 
 # Mohammad Razim — Portfolio
 
