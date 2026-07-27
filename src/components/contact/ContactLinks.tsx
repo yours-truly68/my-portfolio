@@ -20,7 +20,7 @@ export const ContactLinks = React.forwardRef<HTMLDivElement, ContactLinksProps>(
       {
         id: "linkedin",
         label: "LinkedIn",
-        value: "linkedin.com/in/mrazim",
+        value: "linkedin.com/in/mohammadrazim880",
         href: personalInfo.linkedin,
         icon: <Globe className="w-4 h-4 text-blue-400" />,
       },
