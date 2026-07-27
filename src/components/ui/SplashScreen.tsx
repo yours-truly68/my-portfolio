@@ -4,102 +4,91 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+interface SplashContextType {
+  triggerSplash: () => void;
+}
+
+const SplashContext = React.createContext<SplashContextType>({
+  triggerSplash: () => {},
+});
+
+export const useSplash = () => React.useContext(SplashContext);
+
 export interface SplashScreenProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-export function triggerIntroSplash() {
-  if (typeof window !== "undefined") {
-    window.dispatchEvent(new Event("trigger-intro-splash"));
-  }
-}
-
 export function SplashScreen({ className, children, ...props }: SplashScreenProps) {
   const [isLoading, setIsLoading] = React.useState(true);
+  const [splashKey, setSplashKey] = React.useState(0);
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const timerStartedRef = React.useRef(false);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  // Strict 5-second delay triggered when video starts playing
-  const startIntroTimer = React.useCallback(() => {
-    if (timerStartedRef.current) return;
-    timerStartedRef.current = true;
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
+  const triggerSplash = React.useCallback(() => {
+    setIsLoading(true);
+    setSplashKey((prev) => prev + 1);
   }, []);
 
-  const playVideoSequence = React.useCallback(() => {
-    setIsLoading(true);
-    timerStartedRef.current = false;
-
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.muted = true;
-      videoRef.current.playsInline = true;
-      videoRef.current
-        .play()
-        .then(() => startIntroTimer())
-        .catch(() => startIntroTimer());
-    } else {
-      startIntroTimer();
-    }
-  }, [startIntroTimer]);
-
-  // Listen for custom trigger-intro-splash event (fired on Home or Logo click)
+  // 4-second timer runs when isLoading or splashKey changes
   React.useEffect(() => {
-    const handleCustomTrigger = () => {
-      playVideoSequence();
-    };
+    if (!isLoading) return;
 
-    window.addEventListener("trigger-intro-splash", handleCustomTrigger);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+
     return () => {
-      window.removeEventListener("trigger-intro-splash", handleCustomTrigger);
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [playVideoSequence]);
-
-  // Execute intro video playback on initial mount / reload
-  React.useEffect(() => {
-    playVideoSequence();
-  }, [playVideoSequence]);
+  }, [isLoading, splashKey]);
 
   return (
-    <div className={cn("relative min-h-screen", className)} {...props}>
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <motion.div
-            key="splash-overlay"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0D13] overflow-hidden select-none"
-          >
-            {/* Centered Video Scaled to 50% Viewport Width */}
-            <div className="flex flex-col items-center justify-center p-4 w-full">
-              <video
-                ref={videoRef}
-                src="/logo.webm"
-                autoPlay
-                muted
-                playsInline
-                preload="auto"
-                onPlay={startIntroTimer}
-                className="w-[50vw] max-w-[450px] sm:max-w-[500px] h-auto object-contain pointer-events-none drop-shadow-2xl"
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <SplashContext.Provider value={{ triggerSplash }}>
+      <div className={cn("relative min-h-screen", className)} {...props}>
+        <AnimatePresence mode="wait">
+          {isLoading && (
+            <motion.div
+              key={`splash-overlay-${splashKey}`}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+              }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0B0D13] overflow-hidden select-none"
+            >
+              {/* Centered Video Scaled to 50% Viewport Width */}
+              <div className="flex flex-col items-center justify-center p-4 w-full">
+                <video
+                  ref={videoRef}
+                  src="/logo.webm"
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="auto"
+                  onLoadedMetadata={(e) => {
+                    const video = e.currentTarget;
+                    video.currentTime = 0;
+                    video.play().catch(() => {});
+                  }}
+                  className="w-[50vw] max-w-[450px] sm:max-w-[500px] h-auto object-contain pointer-events-none drop-shadow-2xl"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Main Page Contents Slide & Ease In */}
-      <motion.div
-        initial={{ opacity: isLoading ? 0 : 1, y: isLoading ? 20 : 0 }}
-        animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 20 : 0 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-full"
-      >
-        {children}
-      </motion.div>
-    </div>
+        {/* Main Page Contents Slide & Ease In */}
+        <motion.div
+          initial={{ opacity: isLoading ? 0 : 1, y: isLoading ? 20 : 0 }}
+          animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 20 : 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full h-full"
+        >
+          {children}
+        </motion.div>
+      </div>
+    </SplashContext.Provider>
   );
 }

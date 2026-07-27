@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { ArrowRight, Briefcase, Code2, GraduationCap } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
@@ -24,15 +25,16 @@ export const ExperienceSection = React.forwardRef<HTMLDivElement, ExperienceSect
             </span>
           }
           action={
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-[0.7rem] font-bold tracking-wider uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] gap-1.5 p-0 hover:bg-transparent"
-              onClick={() => window.open("/resume", "_self")}
-            >
-              VIEW FULL TIMELINE
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Button>
+            <Link href="/experience">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-[0.7rem] font-bold tracking-wider uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] gap-1.5 p-0 hover:bg-transparent"
+              >
+                VIEW FULL TIMELINE
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            </Link>
           }
         />
 

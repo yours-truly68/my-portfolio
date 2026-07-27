@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { siteNavigation, NavItem } from "@/config/navigation";
+import { useSplash } from "@/components/ui/SplashScreen";
 import { cn } from "@/lib/utils";
 
 export interface SidebarNavigationProps extends React.HTMLAttributes<HTMLElement> {
@@ -21,11 +22,16 @@ export const SidebarNavigation = React.forwardRef<
     ref,
   ) => {
     const pathname = usePathname();
+    const { triggerSplash } = useSplash();
 
     const handleAnchorClick = (
       e: React.MouseEvent<HTMLAnchorElement>,
       item: NavItem
     ) => {
+      if (item.id === "home") {
+        triggerSplash();
+      }
+
       // If we are on homepage and clicking an anchor, smooth scroll locally
       if (pathname === "/" && item.type === "anchor") {
         if (item.id === "home") {
